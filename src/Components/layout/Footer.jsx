@@ -2,7 +2,7 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 
 export default function FooterDiv() {
   return (
-    <div className="bg-[#121717] text-white w-full fixed bottom-0 left-0 px-12 md:px-32 py-6">
+    <div className="bg-[#121717] text-white w-full relative px-12 md:px-32 py-6">
       {/* Top row: OTT + Links */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 min-h-[36px]">
         <span className="text-2xl font-bold">OTT Platform</span>
