@@ -4,6 +4,7 @@ import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
 import Cards from "./Components/sections/Cards/Cards";
 import WideCards from "./Components/sections/Cards/WideCards";
 import Footer from "./Components/layout/Footer";
+import Top10 from "./Components/sections/Cards/Top10";
 
 
 
@@ -33,7 +34,7 @@ function App() {
         </Routes>
       </div> */}
 
-      <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
+      <div className="flex -ml-2 md:-ml-3 xl:-ml-5 gap-x-4">
         <Cards/>
         <Cards />
         <Cards />
@@ -49,6 +50,8 @@ function App() {
         <WideCards />
         <WideCards />
       </div>
+        <Top10/>
+
       <Footer/>
       <BottomNavBar />
     </div>
