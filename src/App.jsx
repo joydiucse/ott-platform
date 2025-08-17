@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import TopNavbar from "./Components/layout/NavBar/TopNavbar";
 import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
 import Footer from "./Components/layout/Footer";
-import CategoryRow from "./Components/sections/CategoryRow";
+import Cards from "./Components/sections/Cards";
 
 /* // Pages
 import Home from "./Pages/Home/Home";
@@ -17,7 +17,7 @@ function App() {
     <div className="background min-h-screen flex flex-col">
       <TopNavbar />
 
-{/*       <div className="flex-1">
+      {/*       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
@@ -27,8 +27,6 @@ function App() {
           <Route path="/account" element={<Account />} />
         </Routes>
       </div> */}
-      
-      <CategoryRow/>
 
 
 
@@ -52,16 +50,14 @@ function App() {
 
 
 
+      <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
+        <Cards />
+        <Cards />
+        <Cards />        
+        <Cards />        
+        <Cards />        
 
-
-
-
-
-
-
-
-
-
+      </div>
 
       <Footer />
       <BottomNavBar />
@@ -70,4 +66,3 @@ function App() {
 }
 
 export default App;
-
