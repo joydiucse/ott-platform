@@ -27,8 +27,8 @@ function App() {
         </Routes>
       </div> */}
 
-      <BottomNavBar />
       <Footer />
+      <BottomNavBar />
     </div>
   );
 }

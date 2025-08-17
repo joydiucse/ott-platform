@@ -15,13 +15,17 @@ const BottomNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getLinkClass = (path) =>
+    `text-xs font-medium ${
+      location.pathname === path ? "text-white" : "text-[#d2d6db]"
+    }`;
+
   return (
     <div
       className={`fixed bottom-0 left-0 right-0 flex justify-around py-2 md:hidden border-t border-gray-700 transition-all duration-300 ${
-        isScrolled
-          ? "backdrop-blur-md bg-black/30"
-          : "bg-transparent"
-      } text-white`}
+        isScrolled ? "backdrop-blur-sm" : ""
+      }`}
+      style={{ backgroundColor: "#0a0d0e" }}
     >
       {bottomNavLinks.map((link) => {
         const IconComponent = Icons[link.icon];
@@ -30,20 +34,14 @@ const BottomNavbar = () => {
           <Link
             key={link.name}
             to={link.path}
-            className="flex flex-col items-center text-sm"
+            className="flex flex-col items-center"
           >
-            <div
-              className={`p-2 rounded-full ${
-                isActive ? "bg-white text-black" : ""
+            <IconComponent
+              className={`w-5 h-5 ${
+                isActive ? "text-white" : "text-[#d2d6db]"
               }`}
-            >
-              <IconComponent />
-            </div>
-            <span
-              className={`${isActive ? "text-white font-medium" : "text-gray-300"}`}
-            >
-              {link.name}
-            </span>
+            />
+            <span className={getLinkClass(link.path)}>{link.name}</span>
           </Link>
         );
       })}

@@ -15,6 +15,11 @@ const TopNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getLinkClass = (path) =>
+    `text-sm font-medium transition-colors ${
+      location.pathname === path ? "text-white" : "text-[#d2d6db]"
+    }`;
+
   return (
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -28,7 +33,7 @@ const TopNavbar = () => {
           {/* Logo + Icons */}
           <div className="flex justify-between items-center">
             <Link to="/" className="text-xl font-bold">
-              BIOSCOPE+
+              OTT PLATFORM
             </Link>
             <div className="flex items-center space-x-4">
               <Search className="w-6 h-6 cursor-pointer" />
@@ -42,23 +47,12 @@ const TopNavbar = () => {
             </div>
           </div>
           {/* Nav Links below logo */}
-          <div className="flex space-x-2 mt-2">
-            {topNavLinks.map((link) => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-white text-black"
-                      : "bg-gray-700/50 hover:bg-gray-600/70"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+          <div className="flex space-x-4 mt-2">
+            {topNavLinks.map((link) => (
+              <Link key={link.name} to={link.path} className={getLinkClass(link.path)}>
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -66,26 +60,15 @@ const TopNavbar = () => {
         <div className="hidden md:flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold">
-            OTT Platform
+            OTT PLATFORM
           </Link>
           {/* Centered Nav Links */}
-          <div className="flex space-x-2">
-            {topNavLinks.map((link) => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-white text-black"
-                      : "bg-gray-700/50 hover:bg-gray-600/70"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+          <div className="flex space-x-6">
+            {topNavLinks.map((link) => (
+              <Link key={link.name} to={link.path} className={getLinkClass(link.path)}>
+                {link.name}
+              </Link>
+            ))}
           </div>
           {/* Icons */}
           <div className="flex items-center space-x-4">
