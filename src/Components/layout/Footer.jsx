@@ -1,12 +1,13 @@
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 
-export default function FooterDiv() {
+export default function Footer() {
   return (
-    <div className="bg-[#121717] text-white w-full fixed bottom-0 left-0 px-12 md:px-32 py-6">
-      {/* Top row: OTT + Links */}
+    <div className="bg-[#121717] text-white w-full relative px-12 md:px-32 py-6 pt-12">
+      {/* Header section with platform name and quick links */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 min-h-[36px]">
         <span className="text-2xl font-bold">OTT Platform</span>
-        {/* <img src="../../assets/images/Logo.png" alt="" /> */}
+        
+        {/* Quick navigation links */}
         <div className="flex items-center gap-8 text-[14px] leading-none font-medium mt-2 md:mt-0 flex-wrap">
           <p className="text-base xl:text-lg cursor-pointer hover:underline">Terms & Conditions</p>
           <p className="text-base xl:text-lg cursor-pointer hover:underline">FAQ</p>
@@ -17,12 +18,13 @@ export default function FooterDiv() {
 
       <hr className="border-white/15" />
 
-      {/* Download + Social */}
+      {/* Main content section with download options and social media */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 pt-5">
-        {/* Download buttons */}
+        {/* Download app section */}
         <div>
           <p className="font-semibold text-[15px] leading-none mb-3">Download App For</p>
           <div className="flex gap-3 flex-wrap">
+            {/* Google Play Store button */}
             <a
               href="https://play.google.com/store/"
               className="h-10 w-[170px] rounded-md overflow-hidden border border-white/20 hover:border-white/40 transition"
@@ -34,6 +36,7 @@ export default function FooterDiv() {
               />
             </a>
 
+            {/* Apple App Store button */}
             <a
               href="https://apps.apple.com/us/app/"
               className="h-10 w-[170px] rounded-md overflow-hidden border border-white/20 hover:border-white/40 transition"
@@ -45,6 +48,7 @@ export default function FooterDiv() {
               />
             </a>
 
+            {/* Android TV button */}
             <a
               href="https://play.google.com/store/apps/"
               className="h-10 w-[170px] rounded-md overflow-hidden border border-white/20 hover:border-white/40 transition"
@@ -58,10 +62,11 @@ export default function FooterDiv() {
           </div>
         </div>
 
-        {/* Follow Us */}
+        {/* Social media links section */}
         <div className="md:justify-self-end flex flex-col items-start md:items-end">
           <p className="font-semibold text-[15px] leading-none mb-3 md:text-right">Follow Us</p>
           <div className="flex gap-3">
+            {/* Facebook icon link */}
             <a
               href="https://www.facebook.com/"
               aria-label="Facebook"
@@ -69,6 +74,8 @@ export default function FooterDiv() {
             >
               <FaFacebookF size={18} />
             </a>
+            
+            {/* YouTube icon link */}
             <a
               href="https://www.youtube.com/"
               aria-label="YouTube"
@@ -76,13 +83,13 @@ export default function FooterDiv() {
             >
               <FaYoutube size={18} />
             </a>
-          </div>
+          </div> 
         </div>
       </div>
 
       <hr className="border-white/15 my-6" />
 
-      {/* Bottom copyright */}
+      {/* Copyright notice */}
       <div className="text-center text-white/60 text-[13px] leading-none">
         © All rights reserved | 2025 Nexdecade Technology (Pvt.) Ltd
       </div>
