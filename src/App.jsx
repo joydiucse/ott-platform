@@ -3,6 +3,8 @@ import TopNavbar from "./Components/layout/NavBar/TopNavbar";
 import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
 import Footer from "./Components/layout/Footer";
 import Cards from "./Components/sections/Cards";
+import WideCards from "./Components/sections/WideCards";
+
 
 /* // Pages
 import Home from "./Pages/Home/Home";
@@ -28,37 +30,21 @@ function App() {
         </Routes>
       </div> */}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
         <Cards />
         <Cards />
-        <Cards />        
-        <Cards />        
-        <Cards />        
-
+        <Cards />
+        <Cards />
+        <Cards />
       </div>
 
+      <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
+        <WideCards />
+        <WideCards />
+        <WideCards />
+        <WideCards />
+        <WideCards />
+      </div>
       <Footer />
       <BottomNavBar />
     </div>
