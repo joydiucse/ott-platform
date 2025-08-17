@@ -1,5 +1,6 @@
 import React from "react";
-import { HoverCard } from "./HoverCard"; // same hover component
+import { HoverCard } from "./HoverCard";
+// same hover component
 
 const items = [
   {

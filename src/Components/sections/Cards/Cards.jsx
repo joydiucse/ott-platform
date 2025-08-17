@@ -1,5 +1,6 @@
 import React from "react";
-import { HoverCard } from "./HoverCard"; // Adjust the import path as needed
+import { HoverCard } from "./HoverCard";
+ // Adjust the import path as needed
 
 // Movie data array - in a real app, this would likely come from an API
 const items = [

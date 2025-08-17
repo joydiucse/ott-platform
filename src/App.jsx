@@ -1,9 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import TopNavbar from "./Components/layout/NavBar/TopNavbar";
 import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
+import Cards from "./Components/sections/Cards/Cards";
+import WideCards from "./Components/sections/Cards/WideCards";
 import Footer from "./Components/layout/Footer";
-import Cards from "./Components/sections/Cards";
-import WideCards from "./Components/sections/WideCards";
+
+
+
 
 
 /* // Pages
@@ -31,6 +34,7 @@ function App() {
       </div> */}
 
       <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
+        <Cards/>
         <Cards />
         <Cards />
         <Cards />
@@ -39,13 +43,13 @@ function App() {
       </div>
 
       <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
-        <WideCards />
+        <WideCards/>
         <WideCards />
         <WideCards />
         <WideCards />
         <WideCards />
       </div>
-      <Footer />
+      <Footer/>
       <BottomNavBar />
     </div>
   );
