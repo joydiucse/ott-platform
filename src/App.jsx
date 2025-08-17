@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import TopNavbar from "./Components/layout/NavBar/TopNavbar";
 import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
 import Footer from "./Components/layout/Footer";
+import CategoryRow from "./Components/sections/CategoryRow";
 
 /* // Pages
 import Home from "./Pages/Home/Home";
@@ -26,6 +27,41 @@ function App() {
           <Route path="/account" element={<Account />} />
         </Routes>
       </div> */}
+      
+      <CategoryRow/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <Footer />
       <BottomNavBar />
