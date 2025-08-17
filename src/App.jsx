@@ -4,10 +4,7 @@ import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
 import Cards from "./Components/sections/Cards/Cards";
 import WideCards from "./Components/sections/Cards/WideCards";
 import Footer from "./Components/layout/Footer";
-
-
-
-
+import HeroBanner from "./Components/sections/HeroBanner";
 
 /* // Pages
 import Home from "./Pages/Home/Home";
@@ -21,7 +18,8 @@ function App() {
   return (
     <div className="background min-h-screen flex flex-col">
       <TopNavbar />
-
+      <HeroBanner />
+      
       {/*       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
