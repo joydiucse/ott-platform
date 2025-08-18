@@ -49,17 +49,3 @@ export default function Cards({ items }) {
     </div>
   );
 }
-          {/* Title outside the card at the bottom */}
-          <div className="mt-2 text-center">
-            <h3 className="text-[#babfc3] text-lg font-extrabold leading-tight">
-              {item.title}
-            </h3>
-          </div>
-
-          {/* Hover card */}
-          <HoverCard item={item} />
-        </div>
-      ))}
-    </div>
-  );
-}
