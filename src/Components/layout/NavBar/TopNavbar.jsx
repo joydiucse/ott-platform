@@ -26,7 +26,7 @@ const TopNavbar = () => {
         isScrolled ? "backdrop-blur-md bg-black/30" : "bg-transparent"
       } text-white`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0">
         
         {/* MOBILE VIEW */}
         <div className="flex flex-col md:hidden">
