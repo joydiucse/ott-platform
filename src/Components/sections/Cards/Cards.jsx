@@ -3,7 +3,7 @@ import { HoverCard } from "./HoverCard"; // Adjust path if needed
 
 export default function Cards({ items }) {
   return (
-    <div className="flex gap-4 px-4">
+    <div className="flex gap-4">
       {items && items.length > 0 ? (
         items.map((item) => (
           <div key={item.id} className="relative group">

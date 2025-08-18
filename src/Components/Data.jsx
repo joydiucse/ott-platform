@@ -1,4 +1,5 @@
 import CategoryRow from "./sections/CategoryRow";
+import Demo from "./Demo";
 
 
 // Sample movie data
@@ -127,10 +128,10 @@ const movieData = [
 
 const Data = () => {
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 px-20">
       <CategoryRow title="All Time Hits" items={movieData} />
-      <CategoryRow title="Latest Releases" items={movieData.slice(0, 7)} />
-      <CategoryRow title="Trending Now" items={movieData.slice(5, 12)} />
+      <CategoryRow title="Latest Releases" items={movieData} />
+      <CategoryRow title="Trending Now" items={movieData} />
     </div>
   );
 };
