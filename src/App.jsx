@@ -7,6 +7,7 @@ import Footer from "./Components/layout/Footer";
 import HeroBanner from "./Components/sections/HeroBanner";
 import Data from "./Components/Data";
 import Top10 from "./Components/sections/Cards/Top10";
+import CategoryRow from "./Components/sections/CategoryRow";
 
 
 
@@ -45,6 +46,7 @@ function App() {
       <TopNavbar />
       <HeroBanner />
       <Data/>
+    
 
 
 
