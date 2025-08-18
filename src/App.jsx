@@ -8,6 +8,29 @@ import HeroBanner from "./Components/sections/HeroBanner";
 import Data from "./Components/Data";
 import Top10 from "./Components/sections/Cards/Top10";
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* // Pages
 import Home from "./Pages/Home/Home";
 import Movies from "./Pages/Movies/Movies";
@@ -21,6 +44,23 @@ function App() {
     <div className="background min-h-screen flex flex-col">
       <TopNavbar />
       <HeroBanner />
+      <Data/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
       {/*       <div className="flex-1">
         <Routes>
@@ -33,25 +73,9 @@ function App() {
         </Routes>
       </div> */}
 
-      <div className="flex -ml-2 md:-ml-3 xl:-ml-5 gap-x-4">
-        <Cards/>
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Data/>
-      </div>
 
-      <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
-        <WideCards/>
-        <WideCards />
-        <WideCards />
-        <WideCards />
-        <WideCards />
-      </div>
-        <Top10/>
-        <Top10/>
+
+
 
       <Footer/>
       <BottomNavBar />

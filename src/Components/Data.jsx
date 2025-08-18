@@ -1,5 +1,7 @@
 import React from 'react';
 import Cards from './sections/Cards/Cards';
+import WideCards from './sections/Cards/WideCards';
+import Top10 from './sections/Cards/Top10';
 
 const movieData = [
   {
@@ -34,10 +36,21 @@ const movieData = [
 const Data = () => {
     return (
         <div>
-            <div >
-      <h1 className="text-white text-2xl mb-4">Movie Collection</h1>
+    <div >
+      <h1 className="text-white text-2xl mb-4">Basic Cards</h1>
       <Cards items={movieData} />
     </div>
+    <div >
+      <h1 className="text-white text-2xl mb-4">Wide Cards</h1>
+      
+      <WideCards items={movieData} />
+    </div>
+        <div >
+      <h1 className="text-white text-2xl mb-4">Top 10</h1>
+      
+      <Top10 items={movieData} />
+    </div>
+    
     
         </div>
     );
