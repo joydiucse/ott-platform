@@ -6,7 +6,7 @@ import "swiper/css";
 const entertainmentItems = [
   { 
     id: 1, 
-    img: "https://play-lh.googleusercontent.com/dxc6rqZHigOTItU0u3i4aWOKN9pdszX-JlZK1tRatCOyT3JJD1AOW7TZ-hzKyk1tkxI", 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_502594be9d8af4f5782a28fcbf5b2fa1_goplay_hoichoi.png?w=640&q=75", 
     name: "Hoichoi" 
   },
   { 
@@ -16,7 +16,7 @@ const entertainmentItems = [
   },
   { 
     id: 3, 
-    img: "https://play-lh.googleusercontent.com/QqDDzy3LMtCfpfRhAVA8JTadBCV5377oKoGopKJzl5trZxvfyPWAK4RwibfNZLOBqw", 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_ed36dcf4b9bc1b310d07a271c3fef216_goplay_lgp.png?w=640&q=75", 
     name: "Lionsgate Play" 
   },
   { 
@@ -26,12 +26,12 @@ const entertainmentItems = [
   },
   { 
     id: 5, 
-    img: "https://yt3.googleusercontent.com/Gu3MR9d-5eHerF_oCxtBhzHrztQ1qLwzPkTRztlM8p5zUoKp77Wd5lyAd26WcfjZNAW7k4aML3A=s900-c-k-c0x00ffffff-no-rj", 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_a9e81e370d9919296b3b1773a293e8d9_goplay_chorki.png?w=640&q=75", 
     name: "Chorki" 
   },
   { 
     id: 6, 
-    img: "https://upload.wikimedia.org/wikipedia/en/3/37/Channel_i_Logo.png", 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_58e28fae622646e66e0a109c34b6bc5f_goplay_iscreen.png?w=640&q=75", 
     name: "Chennel i" 
   },
   { 
@@ -51,7 +51,7 @@ const entertainmentItems = [
   },
   { 
     id: 10, 
-    img: "https://florhamparklib.org/wp-content/uploads/2024/02/shemaroo.png", 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_9c0e9fec9ceae1068394c2ba4737172e_goplay_shemarome.png?w=640&q=75", 
     name: "Shemaroo me" 
   },
 ];
