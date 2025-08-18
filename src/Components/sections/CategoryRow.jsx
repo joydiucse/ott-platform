@@ -58,8 +58,9 @@ export default function CategoryRow({ title, items }) {
             320: { slidesPerView: 2, spaceBetween: 12 },
             480: { slidesPerView: 3, spaceBetween: 14 },
             768: { slidesPerView: 4, spaceBetween: 16 },
-            1024: { slidesPerView: 5, spaceBetween: 18 },
-            1280: { slidesPerView: 7, spaceBetween: 10 },
+            1024: { slidesPerView: 5, spaceBetween: 16 },
+            1280: { slidesPerView: 6, spaceBetween: 16 },
+            1536: { slidesPerView: 7, spaceBetween: 10 },
           }}
         >
           {items.map((item) => (
