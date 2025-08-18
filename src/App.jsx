@@ -5,6 +5,7 @@ import Cards from "./Components/sections/Cards/Cards";
 import WideCards from "./Components/sections/Cards/WideCards";
 import Footer from "./Components/layout/Footer";
 import HeroBanner from "./Components/sections/HeroBanner";
+import Data from "./Components/Data";
 
 /* // Pages
 import Home from "./Pages/Home/Home";
@@ -38,6 +39,7 @@ function App() {
         <Cards />
         <Cards />
         <Cards />
+        <Data/>
       </div>
 
       <div className="flex -ml-2 md:-ml-3 xl:-ml-5">
