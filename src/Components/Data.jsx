@@ -1,5 +1,6 @@
 import CategoryRow from "./sections/CategoryRow";
 import Demo from "./Demo";
+import RoundedCard from "./sections/Cards/RoundedCard";
 
 
 // Sample movie data
@@ -126,12 +127,76 @@ const movieData = [
   }
 ];
 
+
+/* Unlimited Entertainment */
+
+const entertainmentItems = [
+  { 
+    id: 1, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_502594be9d8af4f5782a28fcbf5b2fa1_goplay_hoichoi.png?w=640&q=75", 
+    name: "Hoichoi" 
+  },
+  { 
+    
+    id: 2, 
+    img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/SonyLIV_2020.png", 
+    name: "Sony Liv" 
+  },
+  { id: 3, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_ed36dcf4b9bc1b310d07a271c3fef216_goplay_lgp.png?w=640&q=75", 
+    name: "Lionsgate Play" },
+  { 
+    id: 4, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_36ec3a1cf1bd37190f70410115095152_goplay_deepto.png?w=640&q=75", 
+    name: "Dipto Bangla" 
+
+  },
+  { 
+    id: 5, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_a9e81e370d9919296b3b1773a293e8d9_goplay_chorki.png?w=640&q=75", 
+    name: "Chorki" 
+
+  },
+  { 
+    id: 6, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_58e28fae622646e66e0a109c34b6bc5f_goplay_iscreen.png?w=640&q=75", 
+    name: "Chennel i" 
+    
+  },
+  { 
+    id: 7, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_f7c22f32f59b5ec41654c618f06621ec_goplay_klikk.png?w=640&q=75", 
+    name: "Klikk" 
+    
+  },
+  { 
+    id: 8, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_bb875d7c9999d8c3b816f089801b521f_goplay_epic_on.png?w=640&q=75", 
+    name: "Epic On" 
+    
+  },
+  { 
+    id: 9, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/29/thumbnails_e6fde5f23dbb80d40d9e94c1010b4cb8_goplay_docubay.jpg?w=640&q=75", 
+    name: "Docu Bey" 
+    
+  },
+  { 
+    id: 10, 
+    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_9c0e9fec9ceae1068394c2ba4737172e_goplay_shemarome.png?w=640&q=75", 
+    name: "Shemaroo me" 
+    
+  },
+];
+
+
 const Data = () => {
   return (
     <div className="space-y-16 px-20">
       <CategoryRow title="All Time Hits" items={movieData} />
       <CategoryRow title="Latest Releases" items={movieData} />
       <CategoryRow title="Trending Now" items={movieData} />
+      <RoundedCard title="Unlimited Entertainment" items={entertainmentItems} />
     </div>
   );
 };
