@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
-import { HoverCard } from "./HoverCard";
+import HoverCard from "./HoverCard";
+
 
 export default function Cards({ items }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [parentRect, setParentRect] = useState(null);
   const [isHoveringCard, setIsHoveringCard] = useState(false);
   const [isHoveringHoverCard, setIsHoveringHoverCard] = useState(false);
-
-  const showHoverCard = isHoveringCard || isHoveringHoverCard;
 
   return (
     <div className="flex gap-4 relative">
@@ -17,7 +16,7 @@ export default function Cards({ items }) {
         return (
           <div
             key={item.id}
-            className="relative w-36 md:w-44"
+            className="relative w-28 sm:w-32 md:w-36 lg:w-40 xl:w-44"
             ref={cardRef}
             onMouseEnter={() => {
               setHoveredItem(item);
@@ -26,12 +25,21 @@ export default function Cards({ items }) {
             }}
             onMouseLeave={() => setIsHoveringCard(false)}
           >
+            
             {/* Base card */}
-            <div className="aspect-[2/3] bg-black rounded-3xl overflow-hidden shadow-lg ring-1 ring-white/10 transition-transform duration-300 ease-out hover:scale-110">
+            <div
+              className={`aspect-[2/3] bg-black rounded-md overflow-hidden ring-1 ring-white/10  // ⬅️ Changed from rounded-3xl to rounded-md
+                transition-all duration-300 ease-out
+                ${
+                  isHoveringCard && hoveredItem?.id === item.id
+                    ? "scale-110 shadow-2xl z-20 -translate-y-4"
+                    : "shadow-lg"
+                }`}
+            >
               <img
                 src={item.poster}
                 alt={item.title}
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-full h-full object-cover rounded-md" // ⬅️ Updated img rounding to match
               />
               <div className="absolute top-2 left-2">
                 <img
@@ -57,13 +65,16 @@ export default function Cards({ items }) {
         );
       })}
 
-      {showHoverCard && hoveredItem && parentRect && (
-        <HoverCard
-          item={hoveredItem}
-          parentRect={parentRect}
-          setIsHoveringHoverCard={setIsHoveringHoverCard}
-        />
-      )}
+      <HoverCard
+        items={items}
+        hoveredItem={hoveredItem}
+        setHoveredItem={setHoveredItem}
+        parentRect={parentRect}
+        isHoveringCard={isHoveringCard}
+        setIsHoveringCard={setIsHoveringCard}
+        isHoveringHoverCard={isHoveringHoverCard}
+        setIsHoveringHoverCard={setIsHoveringHoverCard}
+      />
     </div>
   );
 }
