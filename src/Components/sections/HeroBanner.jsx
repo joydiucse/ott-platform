@@ -51,7 +51,7 @@ export default function HeroBanner() {
   const swiperRef = useRef(null);
 
   return (
-    <div className="w-full px-1">
+    <div className="w-full px-1.5">
       <Swiper
         modules={[Autoplay, EffectCoverflow]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
