@@ -249,7 +249,11 @@ const Data = () => {
       <CategoryRow title="All Time Hits" items={movieData} />
       <CategoryRow title="Latest Releases" items={movieData} />
       <CategoryRow title="Trending Now" items={movieData} />
+
+      <div className="-mx-20">
       <RoundedCard title="Unlimited Entertainment" items={entertainmentItems} />
+      </div>
+      
     </div>
   );
 };
