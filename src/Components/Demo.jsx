@@ -1,72 +1,50 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import "swiper/css";
-import Cards from "./sections/Cards/Cards";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
+const App = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export default function RoundedCard({ title, items }) {
-  const swiperRef = useRef(null);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
-  const [hovered, setHovered] = useState(false); // new state for hover
+  useEffect(() => {
+    // Define async function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make GET request using async/await
+        const response = await axios.get(
+          "https://dailysun-cms-api.nexdecade.com/api/v1/get-all-ott-platforms"
+        );
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+        if (error.response) {
+          // Server responded with a status other than 2xx
+          console.log("Response error:", error.response);
+        } else if (error.request) {
+          // No response was received
+          console.log("Request error:", error.request);
+        } else {
+          // Something went wrong setting up the request
+          console.log("Error:", error.message);
+        }
+      }
+    };
+
+    // Call the async function
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
-    <div
-      className=""
-      onMouseEnter={() => setHovered(true)} // show arrows on hover
-      onMouseLeave={() => setHovered(false)} // hide arrows on leave
-    >
-      <h2 className="text-white text-2xl font-semibold mb-6">
-        Unlimited Entertainment
-      </h2>
-
-      {/* Left Arrow */}
-      {!isBeginning && hovered && (
-        <button
-          onClick={() => swiperRef.current.slidePrev()}
-          className="absolute left-0 top-[55%] -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-opacity duration-300"
-        >
-          <ChevronLeft className="w-7 h-7 text-white" />
-        </button>
-      )}
-
-      {/* Right Arrow */}
-      {!isEnd && hovered && (
-        <button
-          onClick={() => swiperRef.current.slideNext()}
-          className="absolute right-0 top-[55%] -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-opacity duration-300"
-        >
-          <ChevronRight className="w-7 h-7 text-white" />
-        </button>
-      )}
-
-      <Swiper
-        onBeforeInit={(swiper) => {
-          swiperRef.current = swiper;
-        }}
-        onSlideChange={(swiper) => {
-          setIsBeginning(swiper.isBeginning);
-          setIsEnd(swiper.isEnd);
-        }}
-        spaceBetween={6}
-        slidesPerView={8}
-        breakpoints={{
-          320: { slidesPerView: 3, spaceBetween: 6 },
-          640: { slidesPerView: 5, spaceBetween: 6 },
-          1024: { slidesPerView: 8, spaceBetween: 6 },
-        }}
-      >
-{items.map((item) => (
-          <SwiperSlide key={item.id}>
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 md:w-36 md:h-36    ">
-                <Cards items={[item]} />
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div>
+      <h1>Fetched Data</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
-}
+};
+
+export default App;

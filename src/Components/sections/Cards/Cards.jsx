@@ -7,6 +7,10 @@ export default function Cards({ items }) {
   const [parentRect, setParentRect] = useState(null);
   const [isHoveringCard, setIsHoveringCard] = useState(false);
   const [isHoveringHoverCard, setIsHoveringHoverCard] = useState(false);
+  const handleImgError = (e) => {
+    e.target.onerror = null; // Prevent infinite loop on error
+    e.target.src = "https://placehold.co/300x450"; // Fallback image
+  }
 
   return (
     <div className="flex gap-4 relative">
@@ -39,12 +43,14 @@ export default function Cards({ items }) {
               <img
                 src={item.poster}
                 alt={item.title}
+                onError={handleImgError}
                 className="w-full h-full object-cover rounded-md" // ⬅️ Updated img rounding to match
               />
               <div className="absolute top-2 left-2">
                 <img
                   src={item.logo}
                   alt="logo"
+                  onError={handleImgError}
                   className="h-6 md:h-7 object-contain bg-black/70 rounded px-1"
                 />
               </div>
@@ -66,6 +72,7 @@ export default function Cards({ items }) {
       })}
 
       <HoverCard
+      handleImgError={handleImgError}
         items={items}
         hoveredItem={hoveredItem}
         setHoveredItem={setHoveredItem}

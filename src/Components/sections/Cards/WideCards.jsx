@@ -1,8 +1,10 @@
 import React from "react";
-import { HoverCard } from "./HoverCard"; // Adjust path if needed
+import HoverCard from "./HoverCard";
+ // Adjust path if needed
 
 export default function WideCards({ items }) {
   return (
+    
     <div className="flex gap-3 px-4">
       {items && items.length > 0 ? (
         items.map((item) => (

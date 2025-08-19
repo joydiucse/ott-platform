@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { Play, Plus, Share2 } from "lucide-react";
 
-export default function HoverCard({ items, hoveredItem, setHoveredItem, parentRect, isHoveringCard, setIsHoveringCard, isHoveringHoverCard, setIsHoveringHoverCard }) {
+export default function HoverCard({ items, hoveredItem, setHoveredItem, parentRect, isHoveringCard, setIsHoveringCard, isHoveringHoverCard, setIsHoveringHoverCard, handleImgError }) {
   const showHoverCard = isHoveringCard || isHoveringHoverCard;
 
   return (
@@ -25,6 +25,7 @@ export default function HoverCard({ items, hoveredItem, setHoveredItem, parentRe
             {/* Top poster */}
             <div className="h-1/2 relative overflow-hidden rounded-t-2xl">
               <img
+              onError={handleImgError}
                 src={hoveredItem.hoverPoster}
                 alt={hoveredItem.title}
                 className="w-full h-full object-cover"
