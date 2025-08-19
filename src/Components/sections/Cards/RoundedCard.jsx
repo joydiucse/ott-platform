@@ -60,12 +60,12 @@ export default function RoundedCard({ title, items }) {
             <div className="flex flex-col items-center">
               <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-gray-800 shadow-lg transition-transform duration-300 ease-in-out hover:scale-100">
                 <img
-                  src={item?.img}
-                  alt={item?.name}
+                  src={item.img}
+                  alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
                 />
               </div>
-              <p className="mt-2 text-sm text-gray-300">{item?.name}</p>
+              <p className="mt-2 text-sm text-gray-300">{item.name}</p>
             </div>
           </SwiperSlide>
         ))}

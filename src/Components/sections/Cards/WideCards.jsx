@@ -1,5 +1,5 @@
 import React from "react";
-import { HoverCard } from "./HoverCard"; // Adjust path if needed
+import HoverCard from "./HoverCard";
 
 export default function WideCards({ items }) {
   return (
