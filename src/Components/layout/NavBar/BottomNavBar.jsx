@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as Icons from "lucide-react";
 import { bottomNavLinks } from "../../../routes/routesConfig";
 
 const BottomNavbar = () => {
   const location = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const getLinkClass = (path) =>
     `text-xs font-medium ${
@@ -22,10 +13,13 @@ const BottomNavbar = () => {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 flex justify-around py-2 md:hidden border-t border-gray-700 transition-all duration-300 ${
-        isScrolled ? "backdrop-blur-sm" : ""
-      }`}
-      style={{ backgroundColor: "#0a0d0e" }}
+      className="
+        fixed bottom-0 left-0 right-0 
+        flex justify-around py-2 md:hidden 
+        border-t border-gray-700 
+        backdrop-blur-md bg-black/30
+        z-50
+      "
     >
       {bottomNavLinks.map((link) => {
         const IconComponent = Icons[link.icon];
