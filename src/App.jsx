@@ -45,9 +45,9 @@ function App() {
   return (
     <div className="background min-h-screen flex flex-col">
       <TopNavbar />
-      <HeroBanner />
+      {/* <HeroBanner /> */}
       <Data/>
-      <RoundedCard/>
+      {/* <RoundedCard/> */}
 
 
 

@@ -1,6 +1,53 @@
 import CategoryRow from "./sections/CategoryRow";
 import Demo from "./Demo";
 import RoundedCard from "./sections/Cards/RoundedCard";
+import HeroBanner from "./sections/HeroBanner";
+
+
+
+// Hero Banner Data
+
+const heroItems = [
+  {
+    id: 1,
+    title: "Tandoob",
+    year: "2025",
+    genre: "Crime · Drama",
+    duration: "2h 10m",
+    age: "18+",
+    thumbnail:
+      "https://m.media-amazon.com/images/M/MV5BZmMwZTk1MDctMjM1My00YTA5LTg0YmYtZWE5Y2Q4N2JhZGQ1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+  },
+  {
+    id: 2,
+    title: "Kacher Manush Dure Thuiya",
+    year: "2024",
+    genre: "Romance · Drama",
+    duration: "2h 24m",
+    age: "16+",
+    thumbnail:
+      "https://image-chorki.gotipath.com/uploads/images/2024/07/16/posters_41d6c5b36f0cda1d6f9701b9f482cf5a_goplay_kacher_manus_dure_thuya_poster_landscape_horizontal_with_mnemonic_1200x675.jpg",
+  },
+  {
+    id: 3,
+    title: "Toofan",
+    year: "2024",
+    genre: "Thriller",
+    duration: "2h 23m",
+    age: "16+",
+    thumbnail: "https://i.ytimg.com/vi/aBYkA7J8D6M/maxresdefault.jpg",
+  },
+  {
+    id: 4,
+    title: "Borbaad",
+    year: "2025",
+    genre: "Action",
+    duration: "2h 19m",
+    age: "18+",
+    thumbnail:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT57B9h8rlHgteZ9JFohzVUESUg9J8zct_px2oandYGGvLxI7AiPcAN983yWJba11rtZtfWK01i4BIiKxgH5J6OVQ8rmNu5edlWch6RDA",
+  },
+];
 
 
 // Sample movie data
@@ -193,6 +240,12 @@ const entertainmentItems = [
 const Data = () => {
   return (
     <div className="space-y-16 px-20">
+
+      
+      <div className="-mx-20">
+        <HeroBanner items={heroItems} />
+      </div>
+
       <CategoryRow title="All Time Hits" items={movieData} />
       <CategoryRow title="Latest Releases" items={movieData} />
       <CategoryRow title="Trending Now" items={movieData} />
