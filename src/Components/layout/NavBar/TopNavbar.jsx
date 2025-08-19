@@ -16,8 +16,10 @@ const TopNavbar = () => {
   }, []);
 
   const getLinkClass = (path) =>
-    `text-sm font-medium transition-colors ${
-      location.pathname === path ? "text-white" : "text-[#d2d6db]"
+    `px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+      location.pathname === path
+        ? "bg-white text-black" // Active
+        : "bg-[#34393a] text-white" // Inactive
     }`;
 
   return (
@@ -27,36 +29,40 @@ const TopNavbar = () => {
       } text-white`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0">
-        
-        {/* MOBILE VIEW */}
-        <div className="flex flex-col md:hidden">
+        {/* ========== MOBILE VIEW ========== */}
+        <div className="flex flex-col md:hidden space-y-2">
           {/* Logo + Icons */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center pt-2">
             <Link to="/" className="text-xl font-bold">
               OTT PLATFORM
             </Link>
-            <div className="flex items-center space-x-4">
-              <Search className="w-6 h-6 cursor-pointer" />
+            <div className="flex items-center space-x-3">
+              <Search className="w-5 h-5 cursor-pointer" />
               <Link
                 to="/account"
-                className="flex items-center space-x-1 border rounded px-3 py-1"
+                className="flex items-center space-x-1 border rounded px-2 py-1 text-sm"
               >
-                <User className="w-5 h-5" />
+                <User className="w-4 h-4" />
                 <span>Login</span>
               </Link>
             </div>
           </div>
-          {/* Nav Links below logo */}
-          <div className="flex space-x-4 mt-2">
+
+          {/* Nav Links as Buttons */}
+          <div className="flex space-x-2 overflow-x-auto pb-2">
             {topNavLinks.map((link) => (
-              <Link key={link.name} to={link.path} className={getLinkClass(link.path)}>
+              <Link
+                key={link.name}
+                to={link.path}
+                className={getLinkClass(link.path)}
+              >
                 {link.name}
               </Link>
             ))}
           </div>
         </div>
 
-        {/* DESKTOP VIEW */}
+        {/* ========== DESKTOP VIEW ========== */}
         <div className="hidden md:flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold">
@@ -65,7 +71,15 @@ const TopNavbar = () => {
           {/* Centered Nav Links */}
           <div className="flex space-x-6">
             {topNavLinks.map((link) => (
-              <Link key={link.name} to={link.path} className={getLinkClass(link.path)}>
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`text-sm font-medium transition-colors ${
+                  location.pathname === link.path
+                    ? "text-white"
+                    : "text-[#d2d6db]"
+                }`}
+              >
                 {link.name}
               </Link>
             ))}

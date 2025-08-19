@@ -11,12 +11,14 @@ export default function RoundedCard({ title, items }) {
 
   return (
     <div
-      className="relative w-full max-w-7xl mx-auto px-6 py-8"
+      className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Dynamic Title */}
-      <h2 className="text-white text-2xl font-semibold mb-6">{title}</h2>
+      <h2 className="text-white text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
+        {title}
+      </h2>
 
       {/* Left Arrow */}
       {!isBeginning && hovered && (
@@ -24,7 +26,7 @@ export default function RoundedCard({ title, items }) {
           onClick={() => swiperRef.current.slidePrev()}
           className="absolute left-0 top-[55%] -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-opacity duration-300"
         >
-          <ChevronLeft className="w-7 h-7 text-white" />
+          <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
         </button>
       )}
 
@@ -34,7 +36,7 @@ export default function RoundedCard({ title, items }) {
           onClick={() => swiperRef.current.slideNext()}
           className="absolute right-0 top-[55%] -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-opacity duration-300"
         >
-          <ChevronRight className="w-7 h-7 text-white" />
+          <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
         </button>
       )}
 
@@ -47,25 +49,40 @@ export default function RoundedCard({ title, items }) {
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
-        spaceBetween={6}
+        spaceBetween={10}
         slidesPerView={8}
         breakpoints={{
-          320: { slidesPerView: 3, spaceBetween: 6 },
-          640: { slidesPerView: 5, spaceBetween: 6 },
-          1024: { slidesPerView: 8, spaceBetween: 6 },
+          0: { slidesPerView: 2.8, spaceBetween: 14 },   // very small phones
+          320: { slidesPerView: 3.2, spaceBetween: 14 }, // phones
+          480: { slidesPerView: 4.2, spaceBetween: 14 }, // big phones
+          640: { slidesPerView: 5.2, spaceBetween: 16 }, // tablets (sm)
+          768: { slidesPerView: 6, spaceBetween: 16 },   // md
+          1024: { slidesPerView: 7, spaceBetween: 18 },  // lg
+          1280: { slidesPerView: 8, spaceBetween: 20 },  // xl
+          1536: { slidesPerView: 8, spaceBetween: 20 },  // 2xl monitors
         }}
       >
-        {items?.map((item,index) => (
+        {items?.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col items-center">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-gray-800 shadow-lg transition-transform duration-300 ease-in-out hover:scale-100">
+              <div
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 
+                           lg:w-32 lg:h-32 xl:w-36 xl:h-36
+                           min-w-[80px] min-h-[80px] 
+                           rounded-full overflow-hidden 
+                           border-2 border-gray-700 shadow-md 
+                           transition-transform duration-300 ease-in-out 
+                           hover:scale-105"
+              >
                 <img
-                  src={item?.img}
-                  alt={item?.name}
+                  src={item.img}
+                  alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
                 />
               </div>
-              <p className="mt-2 text-sm text-gray-300">{item?.name}</p>
+              <p className="mt-2 text-xs sm:text-sm md:text-base text-gray-300 text-center font-medium truncate w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36">
+                {item.name}
+              </p>
             </div>
           </SwiperSlide>
         ))}
