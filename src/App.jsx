@@ -9,6 +9,7 @@ import Data from "./Components/Data";
 import Top10 from "./Components/sections/Cards/Top10";
 import CategoryRow from "./Components/sections/CategoryRow";
 import RoundedCard from "./Components/sections/Cards/RoundedCard";
+import Demo from "./Components/Demo";
 
 
 
