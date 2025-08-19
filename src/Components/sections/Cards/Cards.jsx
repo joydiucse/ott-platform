@@ -46,7 +46,7 @@ export default function Cards({ items }) {
                 onError={handleImgError}
                 className="w-full h-full object-cover rounded-md" // ⬅️ Updated img rounding to match
               />
-              <div className="absolute top-2 left-2">
+              {/* <div className="absolute top-2 left-2">
                 <img
                   src={item.logo}
                   alt="logo"
@@ -58,7 +58,7 @@ export default function Cards({ items }) {
                 <span className="bg-cyan-400 text-black text-[11px] md:text-xs font-semibold px-2 py-1 rounded-md shadow">
                   {item.tag}
                 </span>
-              </div>
+              </div> */}
             </div>
 
             {/* Title */}
@@ -72,7 +72,7 @@ export default function Cards({ items }) {
       })}
 
       <HoverCard
-      handleImgError={handleImgError}
+        handleImgError={handleImgError}
         items={items}
         hoveredItem={hoveredItem}
         setHoveredItem={setHoveredItem}

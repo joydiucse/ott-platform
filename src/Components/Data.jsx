@@ -28,7 +28,7 @@ const Data = () => {
               "https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg",
             tag: item.tag || "Popular",
             title: item.name || item.title || "Untitled",
-            genre: item.genre || "Entertainment",
+            genre: item.category || "Entertainment",
             description: item.description || "No description available.",
           })
         );
