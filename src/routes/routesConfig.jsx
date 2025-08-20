@@ -5,12 +5,14 @@ import Movies from "@/Pages/Movies.jsx";
 import Shorts from "@/Pages/Shorts.jsx";
 import New from "@/Pages/New.jsx";
 import Account from "@/Pages/Account.jsx";
+import Shows from "@/Pages/Shows.jsx";
+import Sports from "@/Pages/Sports.jsx";
 
 export const topNavLinks = [
     { name: "Home", path: "/" },
     { name: "Movies", path: "/movies" },
-    { name: "Shorts", path: "/shorts" },
-    { name: "New", path: "/new" },
+    { name: "Shows", path: "/shows" },
+    { name: "Sports", path: "/sports" },
 ];
 
 export const bottomNavLinks = [
@@ -23,6 +25,8 @@ export const bottomNavLinks = [
 export const routes = [
     { path: "/", element: <Home /> },
     { path: "/movies", element: <Movies /> },
+    { path: "/shows", element: <Shows /> },
+    { path: "/sports", element: <Sports /> },
     { path: "/shorts", element: <Shorts /> },
     { path: "/new", element: <New /> },
     { path: "/account", element: <Account /> },

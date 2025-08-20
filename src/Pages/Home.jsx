@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getErrorMessage, handleError } from '../utils/errorHandler';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,12 +6,14 @@ import HeroBanner from '../Components/sections/HeroBanner';
 import ApiService from '../api/apiService';
 import Data from '../Components/Data';
 import CategoryRow from '../Components/sections/CategoryRow';
+import RoundedCard from "@/Components/sections/Cards/RoundedCard.jsx";
 
 export default function Home() {
   const [carouselData, setCarouselData] = useState([]);
   const [allOttPlatformsData, setAllOttPlatformsData] = useState([]);
   const [trendingVideosData, setTrendingVideosData] = useState([]);
   const [watchforFree, setWatchforFree] = useState([]);
+  const [liveChannelData, setLiveChannelData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -77,28 +79,30 @@ export default function Home() {
     }
   };
 
-  const fetchWatchForFreeData = async () => {
+
+
+
+  const fetchLiveChannelsData = async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await ApiService.getWatchForFree(0, 10);
-      setWatchforFree(data.data || []);
+      const data = await ApiService.getLiveChannels(0, 10);
+        setLiveChannelData(data.data || []);
     } catch (err) {
-      console.error('❌ Watch For Free fetch error:', err);
+      console.error('❌ Live Channel fetch error:', err);
       setError(err);
-        throw handleError(err, 'watchforFree');
+        throw handleError(err, 'liveChannelData');
     } finally {
       setLoading(false);
     }
   };
-
-
 
   useEffect(() => {
     fetchCarouselData();
     fetchOttPlatformsData();
     fetchTrendingVideosData();
     fetchWatchForFreeData();
+    fetchLiveChannelsData();
   }, []);
 
   const handleBannerClick = (item) => {
@@ -159,6 +163,7 @@ export default function Home() {
         <CategoryRow title="All OTT Platforms" items={allOttPlatformsData} />
          <CategoryRow title="Trending Videos" items={trendingVideosData} />
          <CategoryRow title="Watch For Free" items={watchforFree} />
+        <RoundedCard title="Unlimited Entertainment" items={liveChannelData}/>
     </div>
   );
 }
