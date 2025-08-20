@@ -1,26 +1,24 @@
 import React, { useRef, useState } from "react";
 import HoverCard from "./HoverCard";
 
-
 export default function Cards({ items }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [parentRect, setParentRect] = useState(null);
   const [isHoveringCard, setIsHoveringCard] = useState(false);
   const [isHoveringHoverCard, setIsHoveringHoverCard] = useState(false);
+  const cardRef = useRef(null);
   const handleImgError = (e) => {
     e.target.onerror = null; // Prevent infinite loop on error
     e.target.src = "https://placehold.co/300x450"; // Fallback image
-  }
+  };
 
   return (
-    <div className="flex gap-4 relative">
+    <div className="flex relative w-full h-full">
       {items.map((item) => {
-        const cardRef = useRef(null);
-
         return (
           <div
             key={item.id}
-            className="relative w-28 sm:w-32 md:w-36 lg:w-40 xl:w-44"
+            className="w-full h-full"
             ref={cardRef}
             onMouseEnter={() => {
               setHoveredItem(item);
@@ -29,10 +27,9 @@ export default function Cards({ items }) {
             }}
             onMouseLeave={() => setIsHoveringCard(false)}
           >
-            
             {/* Base card */}
             <div
-              className={`aspect-[2/3] bg-black rounded-md overflow-hidden ring-1 ring-white/10  // ⬅️ Changed from rounded-3xl to rounded-md
+              className={`aspect-[2/3] bg-black rounded-sm overflow-hidden ring-1 ring-white/10
                 transition-all duration-300 ease-out
                 ${
                   isHoveringCard && hoveredItem?.id === item.id
@@ -44,26 +41,13 @@ export default function Cards({ items }) {
                 src={item.poster}
                 alt={item.title}
                 onError={handleImgError}
-                className="w-full h-full object-cover rounded-md" // ⬅️ Updated img rounding to match
+                className="w-full h-full object-cover rounded-sm"
               />
-              {/* <div className="absolute top-2 left-2">
-                <img
-                  src={item.logo}
-                  alt="logo"
-                  onError={handleImgError}
-                  className="h-6 md:h-7 object-contain bg-black/70 rounded px-1"
-                />
-              </div>
-              <div className="absolute top-2 right-2">
-                <span className="bg-cyan-400 text-black text-[11px] md:text-xs font-semibold px-2 py-1 rounded-md shadow">
-                  {item.tag}
-                </span>
-              </div> */}
             </div>
 
             {/* Title */}
             <div className="mt-2 text-center">
-              <h3 className="text-[#babfc3] text-lg font-extrabold leading-tight">
+              <h3 className="text-[#babfc3] text-base sm:text-lg font-bold leading-tight">
                 {item.title}
               </h3>
             </div>
@@ -71,6 +55,7 @@ export default function Cards({ items }) {
         );
       })}
 
+      {/* Hover card */}
       <HoverCard
         handleImgError={handleImgError}
         items={items}

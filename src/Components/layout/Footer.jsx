@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div className="bg-[#121717] text-white w-full relative py-6 pt-12">
       {/* Container same as navbar */}
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div className="container">
         
         {/* Header section with platform name and quick links */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 min-h-[36px]">

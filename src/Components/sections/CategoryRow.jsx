@@ -44,38 +44,37 @@ export default function CategoryRow({ title, items }) {
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
       )}
+<div className="px-0 md:px-6">
+  <Swiper
+    onBeforeInit={(swiper) => {
+      swiperRef.current = swiper;
+    }}
+    onSlideChange={(swiper) => {
+      setIsBeginning(swiper.isBeginning);
+      setIsEnd(swiper.isEnd);
+    }}
+    slidesPerGroup={1}
+    breakpoints={{
+      0:   { slidesPerView: 2, spaceBetween: 3 },  
+      360: { slidesPerView: 2, spaceBetween: 16 },  
+      480: { slidesPerView: 3, spaceBetween: 4 },  
+      640: { slidesPerView: 3, spaceBetween: 6 },
+      768: { slidesPerView: 4, spaceBetween: 8 },
+      1024:{ slidesPerView: 5, spaceBetween: 12 },
+      1280:{ slidesPerView: 6, spaceBetween: 14 },
+      1536:{ slidesPerView: 7, spaceBetween: 16 },
+    }}
+    className="w-full"
+  >
+    {items.map((item) => (
+      <SwiperSlide key={item.id} className="relative w-32 sm:w-36 md:w-40 lg:w-44 xl:w-48">
+        <Cards items={[item]} />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
-      <div className="px-2 sm:px-4 md:px-6 lg:px-6 max-sm:px-0">
-        <Swiper
-          onBeforeInit={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={(swiper) => {
-            setIsBeginning(swiper.isBeginning);
-            setIsEnd(swiper.isEnd);
-          }}
-          slidesPerGroup={1}
-          spaceBetween={8}
-          breakpoints={{
-            320: { slidesPerView: 2, spaceBetween: 8 },
-            480: { slidesPerView: 3, spaceBetween: 10 },
-            640: { slidesPerView: 3, spaceBetween: 12 },
-            768: { slidesPerView: 4, spaceBetween: 12 },
-            1024: { slidesPerView: 5, spaceBetween: 14 },
-            1280: { slidesPerView: 6, spaceBetween: 14 },
-            1536: { slidesPerView: 7, spaceBetween: 16 },
-          }}
-          className="w-full"
-        >
-          {items.map((item) => (
-            <SwiperSlide key={item.id} className="flex justify-center">
-              <div className="w-full max-w-[10rem] sm:max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] xl:max-w-[18rem]">
-                <Cards items={[item]} />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+
     </section>
   );
 }

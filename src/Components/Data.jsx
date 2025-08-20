@@ -256,17 +256,17 @@ const Data = () => {
     );
 
   return (
-    <div className="space-y-16 px-20">
+    <div className="container">
 
       
-      <div className="-mx-20">
+      <div className="">
         <Home/>
-      </div>
+      </div >
       {/* API Data */}
       <CategoryRow title="All OTT Platforms" items={movies} />
       <CategoryRow title="Trending Videos" items={trending} />
       <CategoryRow title="Watch for Free" items={freeToWatch} />
-      <div className="-mx-20">
+      <div className="">
       <RoundedCard title="Unlimited Entertainment" items={entertainmentItems} />
       </div>
     </div>

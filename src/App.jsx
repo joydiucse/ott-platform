@@ -10,7 +10,7 @@ function App() {
       {/* <HeroBanner /> */}
       <Data/>
       {/* <RoundedCard/> */}     
-      <Demo/>
+    
       <Footer/>
       <BottomNavBar />
     </div>
