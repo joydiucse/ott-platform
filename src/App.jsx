@@ -1,20 +1,24 @@
-import TopNavbar from "./Components/layout/NavBar/TopNavbar";
-import BottomNavBar from "./Components/layout/NavBar/BottomNavBar";
-import Footer from "./Components/layout/Footer";
-import Data from "./Components/Data";
-import Demo from "./Components/Demo";
+// src/App.jsx
+import React from "react";
+import { Outlet } from "react-router-dom";
+
+// import { AuthProvider } from "./providers/AuthProvider";
+// import { ThemeProvider } from "./providers/ThemeProvider";
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// const queryClient = new QueryClient();
+
 function App() {
-  return (
-    <div className="background min-h-screen flex flex-col">
-      <TopNavbar />
-      {/* <HeroBanner /> */}
-      <Data/>
-      {/* <RoundedCard/> */}     
-    
-      <Footer/>
-      <BottomNavBar />
-    </div>
-  );
+    return (
+        // Wrap with providers (if needed)
+        // <AuthProvider>
+        //   <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        //     <QueryClientProvider client={queryClient}>
+        <Outlet />
+        //     </QueryClientProvider>
+        //   </ThemeProvider>
+        // </AuthProvider>
+    );
 }
 
 export default App;

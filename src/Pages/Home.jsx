@@ -15,13 +15,8 @@ export default function Home() {
     try {
       setLoading(true);
       setError(null);
-      
-      console.log('🔄 Fetching carousel data...');
       const data = await ApiService.getHomepageCarousel(0, 10);
-      console.log('✅ Carousel data received:', data);
-      
       setCarouselData(data.data || []);
-      
     } catch (err) {
       console.error('❌ Carousel fetch error:', err);
       setError(err);
