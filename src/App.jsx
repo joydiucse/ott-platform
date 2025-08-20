@@ -48,7 +48,8 @@ function App() {
       <TopNavbar />
       {/* <HeroBanner /> */}
       <Data/>
-      {/* <RoundedCard/> */}
+      {/* <RoundedCard/> */}     
+      <Demo/>
 
 
 
