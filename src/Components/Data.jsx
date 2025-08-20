@@ -4,7 +4,7 @@ import axios from "axios";
 import CategoryRow from "./sections/CategoryRow";
 import Demo from "./Demo";
 import RoundedCard from "./sections/Cards/RoundedCard";
-import HeroBanner from "./sections/HeroBanner";
+import Home from "../Pages/Home";
 
 
 
@@ -289,7 +289,7 @@ const Data = () => {
 
       
       <div className="-mx-20">
-        <HeroBanner items={heroItems} />
+        <Home/>
       </div>
       {/* API Data */}
       <CategoryRow title="All OTT Platforms" items={movies} />
