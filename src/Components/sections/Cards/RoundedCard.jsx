@@ -11,7 +11,7 @@ export default function RoundedCard({ title, items }) {
 
   return (
     <div
-      className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8"
+      className="container"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -75,13 +75,13 @@ export default function RoundedCard({ title, items }) {
                            hover:scale-105"
               >
                 <img
-                  src={item.img}
-                  alt={item.name}
+                  src={item.cart_image_small}
+                  alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
                 />
               </div>
               <p className="mt-2 text-xs sm:text-sm md:text-base text-gray-300 text-center font-medium truncate w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36">
-                {item.name}
+                {item.title}
               </p>
             </div>
           </SwiperSlide>

@@ -8,49 +8,7 @@ import { API_URL } from "../utils/GlobalService";
 
 
 
-// Hero Banner Data
 
-const heroItems = [
-  {
-    id: 1,
-    title: "Tandoob",
-    year: "2025",
-    genre: "Crime · Drama",
-    duration: "2h 10m",
-    age: "18+",
-    thumbnail:
-      "https://m.media-amazon.com/images/M/MV5BZmMwZTk1MDctMjM1My00YTA5LTg0YmYtZWE5Y2Q4N2JhZGQ1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-  },
-  {
-    id: 2,
-    title: "Kacher Manush Dure Thuiya",
-    year: "2024",
-    genre: "Romance · Drama",
-    duration: "2h 24m",
-    age: "16+",
-    thumbnail:
-      "https://image-chorki.gotipath.com/uploads/images/2024/07/16/posters_41d6c5b36f0cda1d6f9701b9f482cf5a_goplay_kacher_manus_dure_thuya_poster_landscape_horizontal_with_mnemonic_1200x675.jpg",
-  },
-  {
-    id: 3,
-    title: "Toofan",
-    year: "2024",
-    genre: "Thriller",
-    duration: "2h 23m",
-    age: "16+",
-    thumbnail: "https://i.ytimg.com/vi/aBYkA7J8D6M/maxresdefault.jpg",
-  },
-  {
-    id: 4,
-    title: "Borbaad",
-    year: "2025",
-    genre: "Action",
-    duration: "2h 19m",
-    age: "18+",
-    thumbnail:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT57B9h8rlHgteZ9JFohzVUESUg9J8zct_px2oandYGGvLxI7AiPcAN983yWJba11rtZtfWK01i4BIiKxgH5J6OVQ8rmNu5edlWch6RDA",
-  },
-];
 
 
 // Sample movie data
@@ -178,67 +136,6 @@ const movieData = [
 ];
 
 
-/* Unlimited Entertainment */
-
-const entertainmentItems = [
-  { 
-    id: 1, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_502594be9d8af4f5782a28fcbf5b2fa1_goplay_hoichoi.png?w=640&q=75", 
-    name: "Hoichoi" 
-  },
-  { 
-    
-    id: 2, 
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/SonyLIV_2020.png", 
-    name: "Sony Liv" 
-  },
-  { id: 3, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_ed36dcf4b9bc1b310d07a271c3fef216_goplay_lgp.png?w=640&q=75", 
-    name: "Lionsgate Play" },
-  { 
-    id: 4, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_36ec3a1cf1bd37190f70410115095152_goplay_deepto.png?w=640&q=75", 
-    name: "Dipto Bangla" 
-
-  },
-  { 
-    id: 5, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_a9e81e370d9919296b3b1773a293e8d9_goplay_chorki.png?w=640&q=75", 
-    name: "Chorki" 
-
-  },
-  { 
-    id: 6, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_58e28fae622646e66e0a109c34b6bc5f_goplay_iscreen.png?w=640&q=75", 
-    name: "Chennel i" 
-    
-  },
-  { 
-    id: 7, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_f7c22f32f59b5ec41654c618f06621ec_goplay_klikk.png?w=640&q=75", 
-    name: "Klikk" 
-    
-  },
-  { 
-    id: 8, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_bb875d7c9999d8c3b816f089801b521f_goplay_epic_on.png?w=640&q=75", 
-    name: "Epic On" 
-    
-  },
-  { 
-    id: 9, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/29/thumbnails_e6fde5f23dbb80d40d9e94c1010b4cb8_goplay_docubay.jpg?w=640&q=75", 
-    name: "Docu Bey" 
-    
-  },
-  { 
-    id: 10, 
-    img: "https://asset.bioscopelive.com/uploads/images/2025/07/28/thumbnails_9c0e9fec9ceae1068394c2ba4737172e_goplay_shemarome.png?w=640&q=75", 
-    name: "Shemaroo me" 
-    
-  },
-];
-
 
 
 const Data = () => {
@@ -261,9 +158,6 @@ const Data = () => {
       <CategoryRow title="All OTT Platforms" items={movies} />
       <CategoryRow title="Trending Videos" items={trending} />
       <CategoryRow title="Watch for Free" items={freeToWatch} />
-      <div className="">
-      <RoundedCard title="Unlimited Entertainment" items={entertainmentItems} />
-      </div>
     </div>
   );
 };

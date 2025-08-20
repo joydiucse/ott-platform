@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getErrorMessage, handleError } from '../utils/errorHandler';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import HeroBanner from '../Components/sections/HeroBanner';
 import ApiService from '../api/apiService';
 import Data from '../Components/Data';
+import RoundedCard from "@/Components/sections/Cards/RoundedCard.jsx";
 
 export default function Home() {
   const [carouselData, setCarouselData] = useState([]);
+  const [liveChannelData, setLiveChannelData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -27,8 +29,24 @@ export default function Home() {
     }
   };
 
+  const fetchLiveChannelsData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getLiveChannels(0, 10);
+        setLiveChannelData(data.data || []);
+    } catch (err) {
+      console.error('❌ Live Channel fetch error:', err);
+      setError(err);
+        throw handleError(err, 'liveChannelData');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchCarouselData();
+    fetchLiveChannelsData();
   }, []);
 
   const handleBannerClick = (item) => {
@@ -85,6 +103,7 @@ export default function Home() {
           className="w-full"
         />
         <Data/>
+        <RoundedCard title="Unlimited Entertainment" items={liveChannelData}/>
     </div>
   );
 }
