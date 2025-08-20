@@ -18,7 +18,7 @@ const Data = () => {
     );
 
   return (
-    <div className="space-y-16 px-20">
+    <div className="space-y-16 px-20 max-sm:px-4">
       <CategoryRow title="All OTT Platforms" items={movies} />
       <CategoryRow title="Trending Videos" items={trending} />
       <CategoryRow title="Watch for Free" items={freeToWatch} />
