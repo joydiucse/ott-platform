@@ -1,10 +1,10 @@
 import React from "react"
 import { MoonIcon, SunIcon } from "lucide-react"
-import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 
 import { createAnimation } from "./theme-animations";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function ThemeToggleButton({
   variant = "circle-blur",

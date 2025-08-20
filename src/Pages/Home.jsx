@@ -4,6 +4,7 @@ import { AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import HeroBanner from '../Components/sections/HeroBanner';
 import ApiService from '../api/apiService';
+import Data from '../Components/Data';
 
 export default function Home() {
   const [carouselData, setCarouselData] = useState([]);
@@ -72,9 +73,8 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className='space-y-6'>
       {/* Hero Banner Section with Props Drilling */}
-      <section>
         <HeroBanner 
           items={carouselData}
           onItemClick={handleBannerClick}
@@ -84,7 +84,7 @@ export default function Home() {
           showControls={true}
           className="w-full"
         />
-      </section>
+        <Data/>
     </div>
   );
 }

@@ -7,7 +7,6 @@ import ThemeToggleButton from "@/Components/ui/theme-toggle-button.jsx";
 const TopNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { topNavLinks, isActive } = useNavigation();
-
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 0);
         window.addEventListener("scroll", handleScroll);
@@ -18,7 +17,7 @@ const TopNavbar = () => {
         `px-3 py-1 rounded-full text-sm font-medium transition-colors ${
             isActive(path) ? "bg-white text-black" : "bg-[#34393a] text-white"
         }`;
-
+    
     return (
         <nav
             className={`sticky top-0 z-50 transition-all duration-300 ${

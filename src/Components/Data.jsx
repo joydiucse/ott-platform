@@ -257,11 +257,6 @@ const Data = () => {
 
   return (
     <div className="container">
-
-      
-      <div className="">
-        <Home/>
-      </div >
       {/* API Data */}
       <CategoryRow title="All OTT Platforms" items={movies} />
       <CategoryRow title="Trending Videos" items={trending} />
