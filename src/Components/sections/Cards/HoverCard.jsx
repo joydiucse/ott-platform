@@ -58,7 +58,7 @@ export default function HoverCard({
           {/* Poster */}
           <div className="h-1/2 relative overflow-hidden">
             <img
-              src={hoveredItem.hoverPoster}
+              src={hoveredItem.cart_image_big}
               alt={hoveredItem.title}
               onError={handleImgError}
               className="w-full h-full object-cover"

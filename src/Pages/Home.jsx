@@ -5,9 +5,13 @@ import { Button } from '@/components/ui/button';
 import HeroBanner from '../Components/sections/HeroBanner';
 import ApiService from '../api/apiService';
 import Data from '../Components/Data';
+import CategoryRow from '../Components/sections/CategoryRow';
 
 export default function Home() {
   const [carouselData, setCarouselData] = useState([]);
+  const [allOttPlatformsData, setAllOttPlatformsData] = useState([]);
+  const [trendingVideosData, setTrendingVideosData] = useState([]);
+  const [watchforFree, setWatchforFree] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -27,8 +31,74 @@ export default function Home() {
     }
   };
 
+      // All OTT Platforms data only
+  const fetchOttPlatformsData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getOttPlatforms(0, 10);
+      setAllOttPlatformsData(data.data || []);
+    } catch (err) {
+      console.error('❌ All OTT Platforms fetch error:', err);
+      setError(err);
+        throw handleError(err, 'allOttPlatformsData');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+    const fetchTrendingVideosData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getTrendingVideos(0, 10);
+      setTrendingVideosData(data.data || []);
+    } catch (err) {
+      console.error('❌ Trending Videos fetch error:', err);
+      setError(err);
+        throw handleError(err, 'trendingVideosData');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchWatchForFreeData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getWatchForFree(0, 10);
+      setWatchforFree(data.data || []);
+    } catch (err) {
+      console.error('❌ Watch For Free fetch error:', err);
+      setError(err);
+        throw handleError(err, 'watchforFree');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchWatchForFreeData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getWatchForFree(0, 10);
+      setWatchforFree(data.data || []);
+    } catch (err) {
+      console.error('❌ Watch For Free fetch error:', err);
+      setError(err);
+        throw handleError(err, 'watchforFree');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
   useEffect(() => {
     fetchCarouselData();
+    fetchOttPlatformsData();
+    fetchTrendingVideosData();
+    fetchWatchForFreeData();
   }, []);
 
   const handleBannerClick = (item) => {
@@ -72,6 +142,8 @@ export default function Home() {
     );
   }
 
+
+
   return (
     <div className='space-y-6'>
       {/* Hero Banner Section with Props Drilling */}
@@ -84,7 +156,9 @@ export default function Home() {
           showControls={true}
           className="w-full"
         />
-        <Data/>
+        <CategoryRow title="All OTT Platforms" items={allOttPlatformsData} />
+         <CategoryRow title="Trending Videos" items={trendingVideosData} />
+         <CategoryRow title="Watch For Free" items={watchforFree} />
     </div>
   );
 }

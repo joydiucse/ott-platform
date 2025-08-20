@@ -12,7 +12,7 @@ export default function CategoryRow({ title, items }) {
 
   return (
     <section
-      className="relative w-full py-4 sm:py-6 lg:py-8"
+      className="container"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

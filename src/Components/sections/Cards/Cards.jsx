@@ -15,10 +15,10 @@ export default function Cards({ items }) {
 
   return (
     <div className="flex relative w-full h-full gap-4">
-      {items.map((item) => {
+      {items?.map((item,index) => {
         return (
           <div
-            key={item.id}
+            key={index}
             ref={cardRef}
             className="w-full h-full"
             onMouseEnter={() => {
@@ -37,7 +37,7 @@ export default function Cards({ items }) {
               }`}
             >
               <img
-                src={item.poster}
+                src={item.cart_image_small}
                 alt={item.title}
                 onError={handleImgError}
                 className="w-full h-full object-cover rounded-sm"
