@@ -17,7 +17,7 @@ export default function CategoryRow({ title, items }) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Section Title */}
-      <h2 className="text-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-4 sm:mb-6 px-4 sm:px-6">
+      <h2 className="text-black dark:text-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-4 sm:mb-6 px-4 sm:px-6">
         {title}
       </h2>
 
@@ -44,37 +44,36 @@ export default function CategoryRow({ title, items }) {
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
       )}
-<div className="px-0 md:px-6">
-  <Swiper
-    onBeforeInit={(swiper) => {
-      swiperRef.current = swiper;
-    }}
-    onSlideChange={(swiper) => {
-      setIsBeginning(swiper.isBeginning);
-      setIsEnd(swiper.isEnd);
-    }}
-    slidesPerGroup={1}
-    breakpoints={{
-      0:   { slidesPerView: 2, spaceBetween: 3 },  
-      360: { slidesPerView: 2, spaceBetween: 16 },  
-      480: { slidesPerView: 3, spaceBetween: 4 },  
-      640: { slidesPerView: 3, spaceBetween: 6 },
-      768: { slidesPerView: 4, spaceBetween: 8 },
-      1024:{ slidesPerView: 5, spaceBetween: 12 },
-      1280:{ slidesPerView: 6, spaceBetween: 14 },
-      1536:{ slidesPerView: 7, spaceBetween: 16 },
-    }}
-    className="w-full"
-  >
-    {items.map((item) => (
-      <SwiperSlide key={item.id} className="relative w-32 sm:w-36 md:w-40 lg:w-44 xl:w-48">
-        <Cards items={[item]} />
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</div>
 
-
+      <div className="px-0 md:px-6">
+        <Swiper
+          onBeforeInit={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
+          slidesPerGroup={1}
+          breakpoints={{
+            0:   { slidesPerView: 2, spaceBetween: 3 },  
+            360: { slidesPerView: 2, spaceBetween: 16 },  
+            480: { slidesPerView: 3, spaceBetween: 4 },  
+            640: { slidesPerView: 3, spaceBetween: 6 },
+            768: { slidesPerView: 4, spaceBetween: 8 },
+            1024:{ slidesPerView: 5, spaceBetween: 12 },
+            1280:{ slidesPerView: 6, spaceBetween: 14 },
+            1536:{ slidesPerView: 7, spaceBetween: 16 },
+          }}
+          className="w-full"
+        >
+          {items.map((item) => (
+            <SwiperSlide key={item.id} className="relative w-32 sm:w-36 md:w-40 lg:w-44 xl:w-48">
+              <Cards items={[item]} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
   );
 }
