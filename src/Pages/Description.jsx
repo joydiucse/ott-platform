@@ -1,13 +1,12 @@
 // src/pages/DescriptionPage.jsx
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft, Play, Plus, Share2 } from "lucide-react";
 
-export default function Description() {
+export default function DescriptionPage() {
   const { state } = useLocation();
-  const { item } = state || {}; // item is passed via Link
-  const { id } = useParams(); // fallback, if needed
+  const { item } = state || {};
+  const { id } = useParams();
   const navigate = useNavigate();
 
   if (!item) {
@@ -20,71 +19,66 @@ export default function Description() {
     );
   }
 
-  const genres = item.genre
-    ? Array.isArray(item.genre)
-      ? item.genre
-      : item.genre.split(",").map((g) => g.trim())
-    : [];
+  const category = item.category || ""; // <-- take category directly from API
+  const year = item.release_date
+    ? new Date(item.release_date).getFullYear()
+    : "";
 
   return (
-    <div className="container">
-      {/* Back Button */}
+    <div className="relative w-full min-h-screen text-white bg-black">
+      {/* Top Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 mb-6 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+        className="absolute z-20 flex items-center gap-2 text-gray-200 top-6 left-6 hover:text-white"
       >
         <ArrowLeft size={20} /> Back
       </button>
 
-      {/* Layout */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Poster */}
-        <div className="col-span-1">
-          <img
-            src={item.cart_image_big || item.cart_image_small}
-            alt={item.title}
-            className="object-cover w-full rounded-lg shadow-lg"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://placehold.co/400x600";
-            }}
-          />
-        </div>
+      {/* Main Poster */}
+      <div className="relative w-full h-[90vh]">
+        <img
+          src={item.cart_image_big}
+          alt={item.title}
+          className="object-cover w-full h-full"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "https://placehold.co/1920x1080";
+          }}
+        />
 
-        {/* Details */}
-        <div className="flex flex-col col-span-2 gap-4">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {item.title}
-          </h1>
+        {/* Bottom Overlay Content */}
+        <div className="absolute bottom-0 left-0 flex items-end justify-between w-full px-10 py-8 bg-gradient-to-t from-black/70 to-transparent">
+          {/* Left Section (Title + Buttons + Description) */}
+          <div className="max-w-2xl">
+            <h1 className="mb-4 text-4xl font-extrabold">{item.title}</h1>
 
-          {/* Genres */}
-          <div className="flex flex-wrap gap-2">
-            {genres.map((genre, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 text-sm rounded-md bg-gray-200 text-gray-800 dark:bg-[#2b2f30] dark:text-white"
-              >
-                {genre}
-              </span>
-            ))}
+            {/* Buttons */}
+            <div className="flex items-center gap-4 mb-4">
+              <button className="flex items-center gap-2 px-6 py-3 font-semibold text-black transition-transform bg-white rounded-lg hover:scale-105">
+                <Play size={20} /> Play
+              </button>
+              <button className="flex items-center justify-center w-12 h-12 transition rounded-full bg-white/20 hover:bg-white/30">
+                <Plus size={22} />
+              </button>
+              <button className="flex items-center justify-center w-12 h-12 transition rounded-full bg-white/20 hover:bg-white/30">
+                <Share2 size={22} />
+              </button>
+            </div>
+
+            {/* Description */}
+            <p className="text-base leading-relaxed text-gray-200">
+              {item.description || "No description available."}
+            </p>
           </div>
 
-          {/* Description */}
-          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            {item.description || "No description available."}
-          </p>
-
-          {/* Extra info (if available in API) */}
-          {item.release_date && (
-            <p className="text-gray-600 dark:text-gray-400">
-              <strong>Release Date:</strong> {item.release_date}
-            </p>
-          )}
-          {item.language && (
-            <p className="text-gray-600 dark:text-gray-400">
-              <strong>Language:</strong> {item.language}
-            </p>
-          )}
+          <div className="flex flex-col items-end text-right">
+            {category && (
+              <p className="mb-1 text-lg font-bold text-gray-100">{category}</p>
+            )}
+            {year && (
+              <p className="text-lg font-semibold text-gray-300">{year}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
