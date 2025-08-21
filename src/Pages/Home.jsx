@@ -116,9 +116,9 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <RefreshCw className="w-12 h-12 animate-spin mx-auto mb-4 text-blue-500" />
+          <RefreshCw className="w-12 h-12 mx-auto mb-4 text-blue-500 animate-spin" />
           <p className="text-gray-600">Loading featured content...</p>
         </div>
       </div>
@@ -127,11 +127,11 @@ export default function Home() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center max-w-md mx-auto p-6">
-          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Failed to Load Content</h2>
-          <p className="text-gray-600 mb-4">
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="max-w-md p-6 mx-auto text-center">
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-red-500" />
+          <h2 className="mb-2 text-xl font-semibold text-gray-900">Failed to Load Content</h2>
+          <p className="mb-4 text-gray-600">
             {getErrorMessage(error)}
           </p>
           <Button 
@@ -164,6 +164,7 @@ export default function Home() {
          <CategoryRow title="Trending Videos" items={trendingVideosData} />
          <CategoryRow title="Watch For Free" items={watchforFree} />
         <RoundedCard title="Unlimited Entertainment" items={liveChannelData}/>
+       
     </div>
   );
 }

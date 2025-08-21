@@ -12,12 +12,12 @@ export default function CategoryRow({ title, items }) {
 
   return (
     <section
-      className="container"
+      className="container relative"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Section Title */}
-      <h2 className="text-black dark:text-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-4 sm:mb-6 px-4 sm:px-6">
+      <h2 className="px-4 mb-4 text-base font-bold text-black dark:text-white sm:text-lg md:text-xl lg:text-2xl xl:text-3xl sm:mb-6 sm:px-6">
         {title}
       </h2>
 
@@ -25,11 +25,9 @@ export default function CategoryRow({ title, items }) {
       {!isBeginning && hovered && (
         <button
           onClick={() => swiperRef.current?.slidePrev()}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 
-                     bg-black/50 hover:bg-black/70 transition 
-                     w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full"
+          className="absolute z-20 flex items-center justify-center w-8 h-8 transition -translate-y-1/2 rounded-full left-15 top-1/2 bg-black/50 hover:bg-black/70 sm:w-10 sm:h-10"
         >
-          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <ChevronLeft className="w-5 h-5 text-white sm:w-6 sm:h-6" />
         </button>
       )}
 
@@ -37,11 +35,9 @@ export default function CategoryRow({ title, items }) {
       {!isEnd && hovered && (
         <button
           onClick={() => swiperRef.current?.slideNext()}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 
-                     bg-black/50 hover:bg-black/70 transition 
-                     w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full"
+          className="absolute z-20 flex items-center justify-center w-8 h-8 transition -translate-y-1/2 rounded-full right-15 top-1/2 bg-black/50 hover:bg-black/70 sm:w-10 sm:h-10"
         >
-          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <ChevronRight className="w-5 h-5 text-white sm:w-6 sm:h-6" />
         </button>
       )}
 
