@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import Cards from "./Cards/Cards";
 
-export default function CategoryRow({ title, items }) {
+export default function CategoryRow({ title, items, onSeeAll }) {
   const swiperRef = useRef(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -16,10 +16,20 @@ export default function CategoryRow({ title, items }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <h2 className="px-4 mb-4 text-base font-bold text-black dark:text-white sm:text-lg md:text-xl lg:text-2xl xl:text-3xl sm:mb-6 sm:px-6">
-        {title}
-      </h2>
+      {/* Title and See All Button */}
+      <div className="flex items-center justify-between px-4 mb-4 sm:px-6 sm:mb-6">
+        <h2 className="text-base font-bold text-black dark:text-white sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+          {title}
+        </h2>
+        <button
+          onClick={onSeeAll}
+          className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline sm:text-base"
+        >
+          See All
+        </button>
+      </div>
 
+      {/* Navigation Buttons */}
       {!isBeginning && hovered && (
         <button
           onClick={() => swiperRef.current?.slidePrev()}
@@ -38,6 +48,7 @@ export default function CategoryRow({ title, items }) {
         </button>
       )}
 
+      {/* Swiper Carousel */}
       <div className="px-0 md:px-6">
         <Swiper
           onBeforeInit={(swiper) => {

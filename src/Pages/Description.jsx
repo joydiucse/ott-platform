@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Play, Plus, Share2 } from "lucide-react";
 
@@ -7,8 +7,8 @@ export default function DescriptionPage() {
   const { item } = state || {};
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showFullDesc, setShowFullDesc] = useState(false);
 
-  // Ensure page loads from top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -51,22 +51,21 @@ export default function DescriptionPage() {
         <ArrowLeft size={16} className="sm:w-5 sm:h-5" /> Back
       </button>
 
-{/* Main Poster */}
-<div className="relative w-full h-[55vh] sm:h-[65vh] md:h-[75vh] lg:h-[90vh] max-h-screen aspect-video">
-  <img
-    src={getImageUrl()}
-    alt={item.title}
-    className="object-cover w-full h-full"
-    onError={(e) => {
-      e.target.onerror = null;
-      e.target.src = "https://placehold.co/1920x1080";
-    }}
-  />
+      {/* Main Poster */}
+      <div className="relative w-full min-h-[55vh] sm:min-h-[65vh] md:min-h-[75vh] lg:min-h-[90vh] max-h-screen flex items-start justify-center bg-black">
+        <img
+          src={getImageUrl()}
+          alt={item.title}
+          className="object-contain w-full h-full"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "https://placehold.co/1920x1080";
+          }}
+        />
 
-  {/* Bottom Overlay Content */}
-  <div className="absolute bottom-0 left-0 w-full px-4 py-4 sm:px-6 md:px-8 lg:px-12 sm:py-6 md:py-8 bg-gradient-to-t from-black/90 to-transparent">
-    <div className="container flex flex-col gap-6 mx-auto md:flex-row md:items-end md:justify-between">
-            
+        {/* Overlay Content */}
+        <div className="absolute inset-0 flex flex-col justify-end px-4 py-4 sm:px-6 md:px-8 lg:px-12 sm:py-6 md:py-8 bg-gradient-to-t from-black/90 to-transparent">
+          <div className="container flex flex-col gap-6 mx-auto md:flex-row md:items-end md:justify-between">
             {/* Left Section */}
             <div className="max-w-full md:max-w-[65%] lg:max-w-3xl">
               <h1 className="mb-3 text-[clamp(1.5rem,4vw,3.5rem)] font-extrabold leading-tight">
@@ -86,14 +85,26 @@ export default function DescriptionPage() {
                 </button>
               </div>
 
-              {/* Description */}
-              <p className="text-sm leading-relaxed text-gray-200 sm:text-base md:text-lg">
+              {/* Description with "See More" */}
+              <p
+                className={`text-sm leading-relaxed text-gray-200 sm:text-base md:text-lg transition-all duration-300 ${
+                  !showFullDesc ? "max-h-[6rem] overflow-hidden" : ""
+                }`}
+              >
                 {item.description || "No description available."}
               </p>
+              {item.description && item.description.length > 150 && (
+                <button
+                  onClick={() => setShowFullDesc(!showFullDesc)}
+                  className="mt-1 text-xs font-semibold transition sm:text-sm text-white/80 hover:text-white"
+                >
+                  {showFullDesc ? "See Less" : "See More"}
+                </button>
+              )}
             </div>
 
-            {/* Right Section */}
-            <div className="flex flex-col items-start text-left md:items-end md:text-right">
+            {/* Right Section (Category & Year) */}
+            <div className="flex flex-col items-start mb-6 text-left md:items-end md:text-right md:mb-12">
               {category && (
                 <p className="mb-1 text-sm font-bold text-gray-100 sm:text-base md:text-lg">
                   {category}
