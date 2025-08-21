@@ -1,5 +1,5 @@
 // src/pages/DescriptionPage.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Play, Plus, Share2 } from "lucide-react";
 
@@ -8,6 +8,11 @@ export default function DescriptionPage() {
   const { item } = state || {};
   const { id } = useParams();
   const navigate = useNavigate();
+
+  // 👇 Ensure page loads from top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!item) {
     return (
@@ -19,7 +24,7 @@ export default function DescriptionPage() {
     );
   }
 
-  const category = item.category || ""; // <-- take category directly from API
+  const category = item.category || "";
   const year = item.release_date
     ? new Date(item.release_date).getFullYear()
     : "";
@@ -28,8 +33,11 @@ export default function DescriptionPage() {
     <div className="relative w-full min-h-screen text-white bg-black">
       {/* Top Back Button */}
       <button
-        onClick={() => navigate(-1)}
-        className="absolute z-20 flex items-center gap-2 text-gray-200 top-6 left-6 hover:text-white"
+        onClick={(e) => {
+          e.preventDefault(); // 👈 prevent default
+          navigate(-1);
+        }}
+        className="absolute z-20 flex items-center gap-2 font-bold text-black top-6 left-6 hover:text-gray-800 dark:text-white dark:hover:text-gray-300"
       >
         <ArrowLeft size={20} /> Back
       </button>
@@ -71,6 +79,7 @@ export default function DescriptionPage() {
             </p>
           </div>
 
+          {/* Right Section (Category + Year) */}
           <div className="flex flex-col items-end text-right">
             {category && (
               <p className="mb-1 text-lg font-bold text-gray-100">{category}</p>
