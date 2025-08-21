@@ -30,4 +30,5 @@ export const routes = [
     { path: "/shorts", element: <Shorts /> },
     { path: "/new", element: <New /> },
     { path: "/account", element: <Account /> },
+    { path: "/description/:id", element: <Account /> },
 ];
