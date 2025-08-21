@@ -12,6 +12,7 @@ export default function HoverCard({
   handleImgError,
   cardIndex,
   totalCards,
+  slidesPerView,
 }) {
   if (!hoveredItem || !parentRect) return null;
 
@@ -28,41 +29,40 @@ export default function HoverCard({
   const scrollX = window.scrollX;
   const scrollY = window.scrollY;
 
+  // Default: center
   let left = parentRect.left + parentRect.width / 2 + scrollX;
-  let transform = "-translate-x-1/2";
+  let transform = "translateX(-50%)";
 
-  // Special positioning for first and last cards
-  if (cardIndex === 0) {
+  // Leftmost visible card → show right
+  if (cardIndex % slidesPerView === 0) {
     left = parentRect.right + scrollX;
-    transform = "translate-x-0";
-  } else if (cardIndex === totalCards - 1) {
+    transform = "translateX(0)";
+  }
+  // Rightmost visible card → show left
+  else if ((cardIndex + 1) % slidesPerView === 0 || cardIndex === totalCards - 1) {
     left = parentRect.left + scrollX - hoverCardWidth;
-    transform = "translate-x-0";
+    transform = "translateX(0)";
   }
 
   return showHoverCard
     ? createPortal(
         <div
-          className={`absolute z-50 rounded-xl overflow-hidden shadow-xl 
-          bg-white dark:bg-[#121212] 
-          border border-black/10 dark:border-white/10 
-          transition-all duration-300 opacity-100 pointer-events-none`}
+          className="absolute z-50 rounded-xl overflow-hidden shadow-xl bg-white dark:bg-[#121212] border border-black/10 dark:border-white/10 transition-all duration-300"
           style={{
             top: parentRect.top - 20 + scrollY,
             left: left,
             width: hoverCardWidth,
             height: hoverCardHeight,
-            transform:
-              transform === "translate-x-0" ? "none" : "translateX(-50%)",
+            transform: transform,
+            padding: "10px", // Added padding to expand hover area
           }}
+          onMouseEnter={() => setIsHoveringHoverCard(true)}
+          onMouseLeave={() => setIsHoveringHoverCard(false)}
         >
-          {/* Entire HoverCard navigates to description */}
           <Link
             to={`/description/${hoveredItem.id}`}
             state={{ item: hoveredItem }}
             className="block w-full h-full pointer-events-auto"
-            onMouseEnter={() => setIsHoveringHoverCard(true)}
-            onMouseLeave={() => setIsHoveringHoverCard(false)}
           >
             {/* Poster */}
             <div className="relative overflow-hidden h-1/2">
@@ -79,7 +79,6 @@ export default function HoverCard({
             <div className="flex flex-col justify-between p-4 h-1/2">
               <div className="flex items-start mb-3">
                 <div className="flex items-center gap-3">
-                  {/* Buttons stop propagation so they don't trigger navigation */}
                   <button
                     onClick={(e) => e.stopPropagation()}
                     className="flex items-center justify-center w-10 h-10 text-black transition-transform bg-white rounded-full shadow-md hover:scale-110"
@@ -88,19 +87,13 @@ export default function HoverCard({
                   </button>
                   <button
                     onClick={(e) => e.stopPropagation()}
-                    className="w-10 h-10 flex items-center justify-center rounded-full 
-                      bg-gray-200 text-black hover:bg-gray-300 
-                      dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] 
-                      transition-colors"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-black hover:bg-gray-300 dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] transition-colors"
                   >
                     <Plus size={20} />
                   </button>
                   <button
                     onClick={(e) => e.stopPropagation()}
-                    className="w-10 h-10 flex items-center justify-center rounded-full 
-                      bg-gray-200 text-black hover:bg-gray-300 
-                      dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] 
-                      transition-colors"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-black hover:bg-gray-300 dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] transition-colors"
                   >
                     <Share2 size={20} />
                   </button>
@@ -111,9 +104,7 @@ export default function HoverCard({
                   {genres.map((genre, index) => (
                     <span
                       key={index}
-                      className="text-xs px-3 py-1 rounded-md 
-                        bg-gray-100 text-black font-medium 
-                        dark:bg-[#2b2f30] dark:text-white"
+                      className="text-xs px-3 py-1 rounded-md bg-gray-100 text-black font-medium dark:bg-[#2b2f30] dark:text-white"
                     >
                       {genre}
                     </span>
