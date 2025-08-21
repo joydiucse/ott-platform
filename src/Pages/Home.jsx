@@ -13,6 +13,8 @@ export default function Home() {
   const [allOttPlatformsData, setAllOttPlatformsData] = useState([]);
   const [trendingVideosData, setTrendingVideosData] = useState([]);
   const [watchforFree, setWatchforFree] = useState([]);
+  const [topMoviesData, setTopMoviesData] = useState([]);
+  const [topSeriesData, setTopSeriesData] = useState([]);
   const [liveChannelData, setLiveChannelData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -82,6 +84,34 @@ export default function Home() {
 
 
 
+  const fetchTopMoviesData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getTopMovies(0, 10);
+        setTopMoviesData(data.data || []);
+    } catch (err) {
+      console.error('❌ Live Channel fetch error:', err);
+      setError(err);
+        throw handleError(err, 'liveChannelData');
+    } finally {
+      setLoading(false);
+    }
+  };
+  const fetchTopSeriesData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await ApiService.getTopSeries(0, 10);
+        setTopSeriesData(data.data || []);
+    } catch (err) {
+      console.error('❌ Live Channel fetch error:', err);
+      setError(err);
+        throw handleError(err, 'liveChannelData');
+    } finally {
+      setLoading(false);
+    }
+  };
   const fetchLiveChannelsData = async () => {
     try {
       setLoading(true);
@@ -103,6 +133,8 @@ export default function Home() {
     fetchTrendingVideosData();
     fetchWatchForFreeData();
     fetchLiveChannelsData();
+    fetchTopMoviesData();
+    fetchTopSeriesData();
   }, []);
 
   const handleBannerClick = (item) => {
@@ -163,6 +195,8 @@ export default function Home() {
         <CategoryRow title="All OTT Platforms" items={allOttPlatformsData} />
          <CategoryRow title="Trending Videos" items={trendingVideosData} />
          <CategoryRow title="Watch For Free" items={watchforFree} />
+        <CategoryRow title="Top Movies" items={topMoviesData} />
+        <CategoryRow title="Top Series" items={topSeriesData} />
         <RoundedCard title="Unlimited Entertainment" items={liveChannelData}/>
        
     </div>

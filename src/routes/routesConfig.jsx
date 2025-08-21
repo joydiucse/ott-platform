@@ -7,6 +7,8 @@ import New from "@/Pages/New.jsx";
 import Account from "@/Pages/Account.jsx";
 import Shows from "@/Pages/Shows.jsx";
 import Sports from "@/Pages/Sports.jsx";
+import Description from "../Pages/Description";
+
 
 export const topNavLinks = [
     { name: "Home", path: "/" },
@@ -30,5 +32,6 @@ export const routes = [
     { path: "/shorts", element: <Shorts /> },
     { path: "/new", element: <New /> },
     { path: "/account", element: <Account /> },
-    { path: "/description/:id", element: <Account /> },
+    { path: "/description/:id", element: <Description /> },
+
 ];
