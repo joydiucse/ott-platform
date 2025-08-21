@@ -5,7 +5,7 @@ import RoundedCard from "./sections/Cards/RoundedCard";
 import Home from "../Pages/Home";
 import useFetchData from './../hooks/useFetchData';
 import { API_URL } from "../utils/GlobalService";
-import CategoryRow2 from "./sections/CategoryRow2";
+
 
 const Data = () => {
   const { data: movies, loading: loading1, error: error1 } = useFetchData(`${API_URL}/v1/get-all-ott-platforms`);
@@ -29,8 +29,7 @@ const Data = () => {
       <CategoryRow title="All OTT Platforms" items={movies} />
       <CategoryRow title="Trending Videos" items={trending} />
       <CategoryRow title="Watch for Free" items={freeToWatch} />
-<CategoryRow2 title="Top 10 Movies" items={toptenmovies} />
-<CategoryRow2 title="Top 10 Series" items={toptenseries} />
+
     </div>
   );
 };
