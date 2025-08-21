@@ -18,28 +18,29 @@ export default function Cards({ items, cardIndex, totalCards, slidesPerView }) {
   const handleMouseEnter = (item) => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
 
-    // Capture parentRect before any transformation
-    if (cardRef.current) {
+    // Only set parentRect if not already hovering
+    if (!isHoveringCard && !isHoveringHoverCard && cardRef.current) {
       setParentRect(cardRef.current.getBoundingClientRect());
     }
     setHoveredItem(item);
 
-    // Delay hover activation
+    // Delay for smooth response
     hoverTimeoutRef.current = setTimeout(() => {
       setIsHoveringCard(true);
-    }, 1000); // Reduced to 1 second for better responsiveness
+    }, 300);
   };
 
   const handleMouseLeave = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
 
-    // Delay hiding to allow transition to HoverCard
+    // Slightly longer delay to prevent premature disappearance
     hoverTimeoutRef.current = setTimeout(() => {
       if (!isHoveringHoverCard) {
         setIsHoveringCard(false);
         setHoveredItem(null);
+        setParentRect(null);
       }
-    }, 200); // Short delay to prevent flicker
+    }, 300); // Increased to 300ms for stability
   };
 
   // Cleanup timeout on unmount
@@ -56,8 +57,10 @@ export default function Cards({ items, cardIndex, totalCards, slidesPerView }) {
       <Link to={`/description/${item.id}`} state={{ item }}>
         <div
           ref={cardRef}
-          className={`relative aspect-[2/3] bg-black rounded-sm overflow-hidden ring-1 ring-white/10 transition-all duration-300 ease-out ${
-            isHoveringCard || isHoveringHoverCard ? "scale-110 shadow-2xl z-20 -translate-y-4" : "shadow-lg"
+          className={`relative aspect-[2/3] bg-black rounded-sm overflow-hidden ring-1 ring-white/10 transition-all duration-300 ease-in-out ${
+            isHoveringCard || isHoveringHoverCard
+              ? "scale-105 shadow-2xl z-20 -translate-y-2"
+              : "shadow-lg"
           }`}
           onMouseEnter={() => handleMouseEnter(item)}
           onMouseLeave={handleMouseLeave}
@@ -66,12 +69,12 @@ export default function Cards({ items, cardIndex, totalCards, slidesPerView }) {
             src={item.cart_image_small}
             alt={item.title}
             onError={handleImgError}
-            className="object-cover w-full h-full rounded-sm"
+            className="object-cover w-full h-full transition-opacity duration-300 ease-in-out rounded-sm hover:opacity-95"
           />
         </div>
 
         <div className="mt-2 text-center">
-          <h3 className="text-black dark:text-[#babfc3] text-base sm:text-lg font-bold leading-tight">
+          <h3 className="text-black dark:text-[#babfc3] text-base sm:text-lg font-bold leading-tight transition-colors duration-300">
             {item.title}
           </h3>
         </div>

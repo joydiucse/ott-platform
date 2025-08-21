@@ -29,32 +29,34 @@ export default function HoverCard({
   const scrollX = window.scrollX;
   const scrollY = window.scrollY;
 
-  // Default: center
-  let left = parentRect.left + parentRect.width / 2 + scrollX;
-  let transform = "translateX(-50%)";
+  // Default: position to the right (like leftmost card)
+  let left = parentRect.right + scrollX + 8;
+  let transform = "translateX(0)";
 
-  // Leftmost visible card → show right
-  if (cardIndex % slidesPerView === 0) {
-    left = parentRect.right + scrollX;
+  // Rightmost card or near the end → position to the left
+  if ((cardIndex + 1) % slidesPerView === 0 || cardIndex === totalCards - 1) {
+    left = parentRect.left + scrollX - hoverCardWidth - 8;
     transform = "translateX(0)";
   }
-  // Rightmost visible card → show left
-  else if ((cardIndex + 1) % slidesPerView === 0 || cardIndex === totalCards - 1) {
-    left = parentRect.left + scrollX - hoverCardWidth;
+  // For middle cards, prefer right side unless closer to the right edge
+  else if (cardIndex % slidesPerView >= Math.floor(slidesPerView / 2)) {
+    left = parentRect.left + scrollX - hoverCardWidth - 8;
     transform = "translateX(0)";
   }
 
   return showHoverCard
     ? createPortal(
         <div
-          className="absolute z-50 rounded-xl overflow-hidden shadow-xl bg-white dark:bg-[#121212] border border-black/10 dark:border-white/10 transition-all duration-300"
+          className="absolute z-50 rounded-xl overflow-hidden shadow-2xl bg-white dark:bg-[#121212] border border-black/10 dark:border-white/10 transition-all duration-300 ease-in-out"
           style={{
-            top: parentRect.top - 20 + scrollY,
+            top: parentRect.top - 30 + scrollY,
             left: left,
             width: hoverCardWidth,
             height: hoverCardHeight,
             transform: transform,
-            padding: "10px", // Added padding to expand hover area
+            opacity: showHoverCard ? 1 : 0,
+            padding: "8px",
+            transition: "opacity 300ms ease-in-out, transform 300ms ease-in-out, left 300ms ease-in-out, top 300ms ease-in-out",
           }}
           onMouseEnter={() => setIsHoveringHoverCard(true)}
           onMouseLeave={() => setIsHoveringHoverCard(false)}
@@ -70,9 +72,9 @@ export default function HoverCard({
                 src={hoveredItem.cart_image_big}
                 alt={hoveredItem.title}
                 onError={handleImgError}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full transition-opacity duration-300 ease-in-out hover:opacity-90"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-gradient-to-t from-black/70 to-transparent"></div>
             </div>
 
             {/* Content */}
@@ -81,19 +83,19 @@ export default function HoverCard({
                 <div className="flex items-center gap-3">
                   <button
                     onClick={(e) => e.stopPropagation()}
-                    className="flex items-center justify-center w-10 h-10 text-black transition-transform bg-white rounded-full shadow-md hover:scale-110"
+                    className="flex items-center justify-center w-10 h-10 text-black bg-white rounded-full shadow-md transition-all duration-200 ease-in-out hover:scale-110 hover:bg-gray-100 dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a]"
                   >
                     <Play size={20} />
                   </button>
                   <button
                     onClick={(e) => e.stopPropagation()}
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-black hover:bg-gray-300 dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] transition-colors"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-black dark:bg-[#2a2a2a] dark:text-white transition-all duration-200 ease-in-out hover:scale-110 hover:bg-gray-300 dark:hover:bg-[#3a3a3a]"
                   >
                     <Plus size={20} />
                   </button>
                   <button
                     onClick={(e) => e.stopPropagation()}
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-black hover:bg-gray-300 dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] transition-colors"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-black dark:bg-[#2a2a2a] dark:text-white transition-all duration-200 ease-in-out hover:scale-110 hover:bg-gray-300 dark:hover:bg-[#3a3a3a]"
                   >
                     <Share2 size={20} />
                   </button>
@@ -104,7 +106,7 @@ export default function HoverCard({
                   {genres.map((genre, index) => (
                     <span
                       key={index}
-                      className="text-xs px-3 py-1 rounded-md bg-gray-100 text-black font-medium dark:bg-[#2b2f30] dark:text-white"
+                      className="text-xs px-3 py-1 rounded-md bg-gray-100 text-black font-medium dark:bg-[#2b2f30] dark:text-white transition-colors duration-200 ease-in-out"
                     >
                       {genre}
                     </span>
@@ -113,10 +115,10 @@ export default function HoverCard({
               </div>
 
               <div>
-                <h4 className="mb-1 text-lg font-semibold text-black dark:text-white">
+                <h4 className="mb-1 text-lg font-semibold text-black transition-colors duration-200 ease-in-out dark:text-white">
                   {hoveredItem.title}
                 </h4>
-                <p className="text-sm leading-snug text-gray-600 dark:text-gray-400 line-clamp-4">
+                <p className="text-sm leading-snug text-gray-600 transition-colors duration-200 ease-in-out dark:text-gray-400 line-clamp-4">
                   {hoveredItem.description}
                 </p>
               </div>
