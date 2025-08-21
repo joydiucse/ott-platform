@@ -29,7 +29,7 @@ const TopNavbar = () => {
                 <div className="flex flex-col md:hidden space-y-2">
                     {/* Logo + Icons */}
                     <div className="flex justify-between items-center pt-2">
-                        <Link to="/" className="text-xl font-bold">
+                        <Link to="/" className="text-xl text-black dark:text-white font-bold">
                             OTT PLATFORM
                         </Link>
                         <div className="flex items-center gap-3">
@@ -62,12 +62,12 @@ const TopNavbar = () => {
                 {/* ========== DESKTOP VIEW ========== */}
                 <div className="hidden md:flex justify-between items-center h-16">
                     {/* Logo */}
-                    <Link to="/" className="text-xl font-bold">
+                    <Link to="/" className="text-xl text-black dark:text-white font-bold">
                         OTT PLATFORM
                     </Link>
 
                     {/* Centered Nav Links */}
-                    <div className="flex space-x-6">
+                    <div className="flex  space-x-6">
                         {topNavLinks.map((link) => (
                             <Link
                                 key={link.name}
@@ -82,12 +82,12 @@ const TopNavbar = () => {
                     </div>
 
                     {/* Icons */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center text-black dark:text-white gap-3">
                         <Search className="w-6 h-6 cursor-pointer" />
                         <ThemeToggleButton variant="circle-blur" start="top-right" />
                         <Link
                             to="/account"
-                            className="flex items-center space-x-1 border rounded px-3 py-1"
+                            className="flex items-center text-black dark:text-white space-x-1 border rounded px-3 py-1"
                         >
                             <User className="w-5 h-5" />
                             <span>Login</span>
