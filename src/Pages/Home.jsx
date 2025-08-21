@@ -7,6 +7,8 @@ import ApiService from '../api/apiService';
 import Data from '../Components/Data';
 import CategoryRow from '../Components/sections/CategoryRow';
 import RoundedCard from "@/Components/sections/Cards/RoundedCard.jsx";
+import Top10 from "@/Components/sections/Cards/Top10.jsx";
+import CategoryTop10 from "@/Components/sections/CategoryTop10.jsx";
 
 export default function Home() {
   const [carouselData, setCarouselData] = useState([]);
@@ -197,6 +199,7 @@ export default function Home() {
          <CategoryRow title="Watch For Free" items={watchforFree} />
         <CategoryRow title="Top Movies" items={topMoviesData} />
         <CategoryRow title="Top Series" items={topSeriesData} />
+        <CategoryTop10 title="Top Series" items={topSeriesData} />
         <RoundedCard title="Unlimited Entertainment" items={liveChannelData}/>
        
     </div>

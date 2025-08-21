@@ -1,7 +1,18 @@
 // Base Configuration
 export const API_URL = import.meta.env.VITE_API_URL || "https://dailysun-cms-api.nexdecade.com/api";
+export const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5173"
+
 export const API_VERSION = import.meta.env.VITE_API_VERSION || "v1";
 
+export const asset = (pathName) => {
+    return BASE_URL+'/assets/'+pathName
+}
+export const image = (pathName) => {
+    return BASE_URL+'/assets/images/'+pathName
+}
+export const defaultImage = (pathName) => {
+    return BASE_URL+'/assets/images/default/'+pathName
+}
 
 export const API_TIMEOUT = 15000; // 15 seconds
 

@@ -63,7 +63,7 @@ export default function CategoryRow({ title, items }) {
           }}
           className="w-full"
         >
-          {items.map((item) => (
+          {items?.map((item) => (
             <SwiperSlide key={item.id} className="relative w-32 sm:w-36 md:w-40 lg:w-44 xl:w-48">
               <Cards items={[item]} />
             </SwiperSlide>
