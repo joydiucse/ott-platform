@@ -33,18 +33,21 @@ export default function HoverCard({
   // Special positioning for first and last cards
   if (cardIndex === 0) {
     // First card → show on right
-    left = parentRect.right + scrollX; 
+    left = parentRect.right + scrollX;
     transform = "translate-x-0";
   } else if (cardIndex === totalCards - 1) {
     // Last card → show on left
-    left = parentRect.left + scrollX - hoverCardWidth; 
+    left = parentRect.left + scrollX - hoverCardWidth;
     transform = "translate-x-0";
   }
 
   return showHoverCard
     ? createPortal(
         <div
-          className={`absolute z-50 rounded-xl overflow-hidden shadow-xl bg-[#121212] border border-white/10 transition-all duration-300 opacity-100 pointer-events-auto`}
+          className={`absolute z-50 rounded-xl overflow-hidden shadow-xl 
+          bg-white dark:bg-[#121212] 
+          border border-black/10 dark:border-white/10 
+          transition-all duration-300 opacity-100 pointer-events-auto`}
           style={{
             top: parentRect.top - 20 + scrollY,
             left: left,
@@ -56,36 +59,46 @@ export default function HoverCard({
           onMouseLeave={() => setIsHoveringHoverCard(false)}
         >
           {/* Poster */}
-          <div className="h-1/2 relative overflow-hidden">
+          <div className="relative overflow-hidden h-1/2">
             <img
               src={hoveredItem.cart_image_big}
               alt={hoveredItem.title}
               onError={handleImgError}
-              className="w-full h-full object-cover"
+              className="object-cover w-full h-full"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
           </div>
 
           {/* Content */}
-          <div className="h-1/2 p-4 flex flex-col justify-between">
+          <div className="flex flex-col justify-between p-4 h-1/2">
             <div className="flex items-start mb-3">
               <div className="flex items-center gap-3">
-                <button className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-black shadow-md hover:scale-110 transition-transform">
+                {/* Play button → stays white in both modes */}
+                <button className="flex items-center justify-center w-10 h-10 text-black transition-transform bg-white rounded-full shadow-md hover:scale-110">
                   <Play size={20} />
                 </button>
-                <button className="w-10 h-10 flex items-center justify-center rounded-full bg-[#2a2a2a] text-white hover:bg-[#3a3a3a] transition-colors">
+                {/* Plus + Share → adapt to theme */}
+                <button className="w-10 h-10 flex items-center justify-center rounded-full 
+                  bg-gray-200 text-black hover:bg-gray-300 
+                  dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] 
+                  transition-colors">
                   <Plus size={20} />
                 </button>
-                <button className="w-10 h-10 flex items-center justify-center rounded-full bg-[#2a2a2a] text-white hover:bg-[#3a3a3a] transition-colors">
+                <button className="w-10 h-10 flex items-center justify-center rounded-full 
+                  bg-gray-200 text-black hover:bg-gray-300 
+                  dark:bg-[#2a2a2a] dark:text-white dark:hover:bg-[#3a3a3a] 
+                  transition-colors">
                   <Share2 size={20} />
                 </button>
               </div>
 
-              <div className="ml-auto flex flex-col gap-2 pr-1 items-end">
+              <div className="flex flex-col items-end gap-2 pr-1 ml-auto">
                 {genres.map((genre, index) => (
                   <span
                     key={index}
-                    className="text-xs px-3 py-1 rounded-md bg-[#2b2f30] text-white font-medium"
+                    className="text-xs px-3 py-1 rounded-md 
+                      bg-gray-100 text-black font-medium 
+                      dark:bg-[#2b2f30] dark:text-white"
                   >
                     {genre}
                   </span>
@@ -94,8 +107,10 @@ export default function HoverCard({
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-1 text-white">{hoveredItem.title}</h4>
-              <p className="text-sm text-gray-400 leading-snug line-clamp-4">
+              <h4 className="mb-1 text-lg font-semibold text-black dark:text-white">
+                {hoveredItem.title}
+              </h4>
+              <p className="text-sm leading-snug text-gray-600 dark:text-gray-400 line-clamp-4">
                 {hoveredItem.description}
               </p>
             </div>

@@ -14,37 +14,34 @@ export default function Cards({ items }) {
   };
 
   return (
-    <div className="flex relative w-full h-full gap-4">
-      {items?.map((item,index) => {
+    <div className="relative flex w-full h-full gap-4">
+      {items?.map((item, index) => {
         return (
-          <div
-            key={index}
-            ref={cardRef}
-            className="w-full h-full"
-            onMouseEnter={() => {
-              setHoveredItem(item);
-              setParentRect(cardRef.current.getBoundingClientRect());
-              setIsHoveringCard(true);
-            }}
-            onMouseLeave={() => setIsHoveringCard(false)}
-          >
-            {/* Base card */}
+          <div key={index} ref={cardRef} className="w-full h-full">
+            
+            {/* Base card (hover only on image) */}
             <div
-              className={`aspect-[2/3] bg-black rounded-sm overflow-hidden ring-1 ring-white/10 transition-all duration-300 ease-out ${
+              className={`relative aspect-[2/3] bg-black rounded-sm overflow-hidden ring-1 ring-white/10 transition-all duration-300 ease-out ${
                 isHoveringCard && hoveredItem?.id === item.id
                   ? "scale-110 shadow-2xl z-20 -translate-y-4"
                   : "shadow-lg"
               }`}
+              onMouseEnter={() => {
+                setHoveredItem(item);
+                setParentRect(cardRef.current.getBoundingClientRect());
+                setIsHoveringCard(true);
+              }}
+              onMouseLeave={() => setIsHoveringCard(false)}
             >
               <img
                 src={item.cart_image_small}
                 alt={item.title}
                 onError={handleImgError}
-                className="w-full h-full object-cover rounded-sm"
+                className="object-cover w-full h-full rounded-sm"
               />
             </div>
 
-            {/* Title */}
+            {/* Title (no hover trigger here) */}
             <div className="mt-2 text-center">
               <h3 className="text-black dark:text-[#babfc3] text-base sm:text-lg font-bold leading-tight">
                 {item.title}
