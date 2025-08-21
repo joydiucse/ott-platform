@@ -57,11 +57,11 @@ export default function CategoryTop10({ title, items }) {
                     slidesPerGroup={1}
                     breakpoints={{
                         0:   { slidesPerView: 2, spaceBetween: 16 },
-                        480: { slidesPerView: 3, spaceBetween: 16 },
-                        640: { slidesPerView: 4, spaceBetween: 16 },
-                        768: { slidesPerView: 4, spaceBetween: 16 },
-                        1024:{ slidesPerView: 5, spaceBetween: 16 },
-                        1280:{ slidesPerView: 6, spaceBetween: 16 },
+                        480: { slidesPerView: 2, spaceBetween: 16 },
+                        640: { slidesPerView: 2, spaceBetween: 16 },
+                        768: { slidesPerView: 3, spaceBetween: 16 },
+                        1024:{ slidesPerView: 3, spaceBetween: 16 },
+                        1280:{ slidesPerView: 3, spaceBetween: 16 },
                         1536:{ slidesPerView: 4, spaceBetween: 16 },
                     }}
                     className="w-full"
