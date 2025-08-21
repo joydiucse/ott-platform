@@ -4,10 +4,12 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import { Play, Plus, Info } from "lucide-react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { formatDuration } from "../../utils/dataHelpers";
 
 export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPlayDelay = 4000, loop = true, showControls = true, className = "" }) {
   const swiperRef = useRef(null);
+  const navigate = useNavigate();
 
   // Helper function to extract year from release date
   const getYearFromDate = (dateString) => {
@@ -52,6 +54,8 @@ export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPl
               const current = swiperRef.current.realIndex;
 
               if (index === current) {
+                // Navigate to description page with item data
+                navigate(`/description/${item.id}`, { state: { item } });
                 if (onItemClick) {
                   onItemClick(item);
                 }
@@ -92,10 +96,10 @@ export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPl
                       >
                         <Play className="w-5 h-5" /> Play Now
                       </button>
-                      <button className="p-2 text-white transition border rounded-full hover:bg-gray-700">
+                      <button className="p-2 text-white transition border rounded-full hover:bg-gray-700" onClick={(e) => e.stopPropagation()}>
                         <Plus className="w-5 h-5" />
                       </button>
-                      <button className="p-2 text-white transition border rounded-full hover:bg-gray-700">
+                      <button className="p-2 text-white transition border rounded-full hover:bg-gray-700" onClick={(e) => e.stopPropagation()}>
                         <Info className="w-5 h-5" />
                       </button>
                     </div>
