@@ -4,10 +4,12 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import { Play, Plus, Info } from "lucide-react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { formatDuration } from "../../utils/dataHelpers";
 
 export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPlayDelay = 4000, loop = true, showControls = true, className = "" }) {
   const swiperRef = useRef(null);
+  const navigate = useNavigate();
 
   // Helper function to extract year from release date
   const getYearFromDate = (dateString) => {
@@ -52,6 +54,8 @@ export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPl
               const current = swiperRef.current.realIndex;
 
               if (index === current) {
+                // Navigate to description page with item data
+                navigate(`/description/${item.id}`, { state: { item } });
                 if (onItemClick) {
                   onItemClick(item);
                 }
@@ -68,23 +72,23 @@ export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPl
               <img
                 src={getImageUrl(item)}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                 onError={(e) => {
                   e.target.src = 'https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=800&auto=format&fit=crop&q=60';
                 }}
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4 sm:p-6">
+              <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent sm:p-6">
                 
                 {/* Desktop layout */}
-                <div className="hidden md:flex justify-between w-full text-white items-end">
+                <div className="items-end justify-between hidden w-full text-white md:flex">
                   {/* Left side */}
                   <div className="flex flex-col gap-4 max-w-[60%]">
                     <h2 className="text-4xl font-bold">{item.title}</h2>
                     <div className="flex items-center gap-3">
                       <button 
-                        className="bg-white text-black font-semibold px-6 py-2 rounded-3xl flex items-center gap-2 hover:bg-gray-200 transition"
+                        className="flex items-center gap-2 px-6 py-2 font-semibold text-black transition bg-white rounded-3xl hover:bg-gray-200"
                         onClick={(e) => {
                           e.stopPropagation();
                           if (onItemClick) onItemClick(item);
@@ -92,20 +96,20 @@ export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPl
                       >
                         <Play className="w-5 h-5" /> Play Now
                       </button>
-                      <button className="border text-white p-2 rounded-full hover:bg-gray-700 transition">
+                      <button className="p-2 text-white transition border rounded-full hover:bg-gray-700" onClick={(e) => e.stopPropagation()}>
                         <Plus className="w-5 h-5" />
                       </button>
-                      <button className="border text-white p-2 rounded-full hover:bg-gray-700 transition">
+                      <button className="p-2 text-white transition border rounded-full hover:bg-gray-700" onClick={(e) => e.stopPropagation()}>
                         <Info className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
 
                   {/* Right side */}
-                  <div className="flex flex-col items-end gap-2 text-right text-sm text-gray-300">
+                  <div className="flex flex-col items-end gap-2 text-sm text-right text-gray-300">
                     <div className="flex items-center gap-2">
                       {item.category?.split(",").map((g, i) => (
-                        <span key={i} className="text-white underline underline-offset-4 px-2 py-1 rounded">
+                        <span key={i} className="px-2 py-1 text-white underline rounded underline-offset-4">
                           {g.trim()}
                         </span>
                       ))}
@@ -113,27 +117,27 @@ export default function HeroBanner({ items, onItemClick, autoPlay = true, autoPl
                     <div className="flex items-center gap-4">
                       <span className="text-white">{formatDuration(item.duration)}</span>
                       <span className="text-white">{getYearFromDate(item.release_date)}</span>
-                      <span className="border text-white px-2 py-1 rounded text-xs">{item.age_restrictions}</span>
+                      <span className="px-2 py-1 text-xs text-white border rounded">{item.age_restrictions}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Mobile layout */}
-                <div className="flex flex-col md:hidden text-white text-center items-center">
+                <div className="flex flex-col items-center text-center text-white md:hidden">
                   <h2 className="text-2xl font-bold">{item.title}</h2>
                   <div className="flex flex-wrap justify-center gap-2 mt-2 text-xs">
                     {item.category?.split(",").map((g, i) => (
-                      <span key={i} className="text-white underline underline-offset-4 px-2 py-1 rounded">
+                      <span key={i} className="px-2 py-1 text-white underline rounded underline-offset-4">
                         {g.trim()}
                       </span>
                     ))}
-                    <span className="text-white underline underline-offset-4 px-2 py-1 rounded">
+                    <span className="px-2 py-1 text-white underline rounded underline-offset-4">
                       {getYearFromDate(item.release_date)}
                     </span>
-                    <span className="text-white px-2 py-1 rounded border">{item.age_restrictions}</span>
+                    <span className="px-2 py-1 text-white border rounded">{item.age_restrictions}</span>
                   </div>
                   <button 
-                    className="mt-3 bg-white text-black font-semibold w-36 h-10 flex items-center justify-center gap-2 rounded-3xl hover:bg-gray-200 transition"
+                    className="flex items-center justify-center h-10 gap-2 mt-3 font-semibold text-black transition bg-white w-36 rounded-3xl hover:bg-gray-200"
                     onClick={(e) => {
                       e.stopPropagation();
                       if (onItemClick) onItemClick(item);

@@ -2,6 +2,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import ScrollToTop from "./Components/ScrollToTop";
 
 // import { AuthProvider } from "./providers/AuthProvider";
 // import { ThemeProvider } from "./providers/ThemeProvider";
@@ -15,6 +16,7 @@ function App() {
         // <AuthProvider>
            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
              {/* <QueryClientProvider client={queryClient}> */}
+             <ScrollToTop/>
                 <Outlet />
              {/* </QueryClientProvider> */}
              

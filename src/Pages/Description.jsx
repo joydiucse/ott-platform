@@ -1,90 +1,122 @@
-// src/pages/DescriptionPage.jsx
-import React from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft, Play, Plus, Share2 } from "lucide-react";
 
-export default function Description() {
+export default function DescriptionPage() {
   const { state } = useLocation();
-  const { item } = state || {}; // item is passed via Link
-  const { id } = useParams(); // fallback, if needed
+  const { item } = state || {};
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [showFullDesc, setShowFullDesc] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!item) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-600 dark:text-gray-300">
+      <div className="flex items-center justify-center min-h-screen px-4">
+        <p className="text-sm text-gray-600 dark:text-gray-300 sm:text-base">
           No details available for this item (id: {id}).
         </p>
       </div>
     );
   }
 
-  const genres = item.genre
-    ? Array.isArray(item.genre)
-      ? item.genre
-      : item.genre.split(",").map((g) => g.trim())
-    : [];
+  const category = item.category || "";
+  const year = item.release_date
+    ? new Date(item.release_date).getFullYear()
+    : "";
+
+  const getImageUrl = () => {
+    return (
+      item.carousel_image_big ||
+      item.carousel_image_small ||
+      item.cart_image_big ||
+      item.cart_image_small ||
+      "https://placehold.co/1920x1080"
+    );
+  };
 
   return (
-    <div className="container">
-      {/* Back Button */}
+    <div className="relative w-full min-h-screen text-white bg-black">
+      {/* Top Back Button */}
       <button
-        onClick={() => navigate(-1)}
-        className="flex items-center gap-2 mb-6 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(-1);
+        }}
+        className="absolute z-20 flex items-center gap-1 text-xs font-semibold text-black sm:text-sm md:text-base lg:text-lg top-4 sm:top-6 left-4 sm:left-6 hover:text-gray-800 dark:text-white dark:hover:text-gray-300"
       >
-        <ArrowLeft size={20} /> Back
+        <ArrowLeft size={16} className="sm:w-5 sm:h-5" /> Back
       </button>
 
-      {/* Layout */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Poster */}
-        <div className="col-span-1">
-          <img
-            src={item.cart_image_big || item.cart_image_small}
-            alt={item.title}
-            className="object-cover w-full rounded-lg shadow-lg"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://placehold.co/400x600";
-            }}
-          />
-        </div>
+      {/* Main Poster */}
+      <div className="relative w-full min-h-[55vh] sm:min-h-[65vh] md:min-h-[75vh] lg:min-h-[90vh] max-h-screen flex items-start justify-center bg-black">
+        <img
+          src={getImageUrl()}
+          alt={item.title}
+          className="object-contain w-full h-full"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "https://placehold.co/1920x1080";
+          }}
+        />
 
-        {/* Details */}
-        <div className="flex flex-col col-span-2 gap-4">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {item.title}
-          </h1>
+        {/* Overlay Content */}
+        <div className="absolute inset-0 flex flex-col justify-end px-4 py-4 sm:px-6 md:px-8 lg:px-12 sm:py-6 md:py-8 bg-gradient-to-t from-black/90 to-transparent">
+          <div className="container flex flex-col gap-6 mx-auto md:flex-row md:items-end md:justify-between">
+            {/* Left Section */}
+            <div className="max-w-full md:max-w-[65%] lg:max-w-3xl">
+              <h1 className="mb-3 text-[clamp(1.5rem,4vw,3.5rem)] font-extrabold leading-tight">
+                {item.title}
+              </h1>
 
-          {/* Genres */}
-          <div className="flex flex-wrap gap-2">
-            {genres.map((genre, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 text-sm rounded-md bg-gray-200 text-gray-800 dark:bg-[#2b2f30] dark:text-white"
+              {/* Buttons */}
+              <div className="flex items-center gap-2 mb-3 sm:gap-3 md:gap-4">
+                <button className="flex items-center gap-1 sm:gap-2 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 font-semibold text-black bg-white rounded-lg hover:scale-105 transition-transform text-xs sm:text-sm md:text-base">
+                  <Play size={16} className="sm:w-5 sm:h-5" /> Play
+                </button>
+                <button className="flex items-center justify-center transition rounded-full w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/20 hover:bg-white/30">
+                  <Plus className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                </button>
+                <button className="flex items-center justify-center transition rounded-full w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/20 hover:bg-white/30">
+                  <Share2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                </button>
+              </div>
+
+              {/* Description with "See More" */}
+              <p
+                className={`text-sm leading-relaxed text-gray-200 sm:text-base md:text-lg transition-all duration-300 ${
+                  !showFullDesc ? "max-h-[6rem] overflow-hidden" : ""
+                }`}
               >
-                {genre}
-              </span>
-            ))}
+                {item.description || "No description available."}
+              </p>
+              {item.description && item.description.length > 150 && (
+                <button
+                  onClick={() => setShowFullDesc(!showFullDesc)}
+                  className="mt-1 text-xs font-semibold transition sm:text-sm text-white/80 hover:text-white"
+                >
+                  {showFullDesc ? "See Less" : "See More"}
+                </button>
+              )}
+            </div>
+
+            {/* Right Section (Category & Year) */}
+            <div className="flex flex-col items-start mb-6 text-left md:items-end md:text-right md:mb-12">
+              {category && (
+                <p className="mb-1 text-sm font-bold text-gray-100 sm:text-base md:text-lg">
+                  {category}
+                </p>
+              )}
+              {year && (
+                <p className="text-sm font-semibold text-gray-300 sm:text-base md:text-lg">
+                  {year}
+                </p>
+              )}
+            </div>
           </div>
-
-          {/* Description */}
-          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            {item.description || "No description available."}
-          </p>
-
-          {/* Extra info (if available in API) */}
-          {item.release_date && (
-            <p className="text-gray-600 dark:text-gray-400">
-              <strong>Release Date:</strong> {item.release_date}
-            </p>
-          )}
-          {item.language && (
-            <p className="text-gray-600 dark:text-gray-400">
-              <strong>Language:</strong> {item.language}
-            </p>
-          )}
         </div>
       </div>
     </div>
