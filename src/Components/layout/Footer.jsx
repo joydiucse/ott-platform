@@ -28,16 +28,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="border-black/10 dark:border-white/15" />
+        <hr className="border-black dark:border-white/15" />
 
         {/* Main content section with download options and social media */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 pt-5">
+        <div className="grid grid-cols-1 pt-5 md:grid-cols-2 gap-y-6">
           {/* Download app section */}
           <div>
             <p className="font-semibold text-[15px] leading-none mb-3 text-[#111618] dark:text-white">
               Download App For
             </p>
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex flex-wrap gap-3">
               {/* Google Play Store button */}
               <a
                 href="https://play.google.com/store/"
@@ -46,7 +46,7 @@ export default function Footer() {
                 <img
                   src="https://www.bioscopeplus.com/images/google-play.png?w=384&q=75"
                   alt="Get it on Google Play"
-                  className="h-full w-full object-cover"
+                  className="object-cover w-full h-full"
                 />
               </a>
 
@@ -58,7 +58,7 @@ export default function Footer() {
                 <img
                   src="https://www.bioscopeplus.com/images/apple-play.png?w=384&q=75"
                   alt="Download on the App Store"
-                  className="h-full w-full object-cover"
+                  className="object-cover w-full h-full"
                 />
               </a>
 
@@ -70,14 +70,14 @@ export default function Footer() {
                 <img
                   src="https://www.bioscopeplus.com/images/android-tv.png?w=384&q=75"
                   alt="Watch on Android TV"
-                  className="h-full w-full object-cover"
+                  className="object-cover w-full h-full"
                 />
               </a>
             </div>
           </div>
 
           {/* Social media links section */}
-          <div className="md:justify-self-end flex flex-col items-start md:items-end">
+          <div className="flex flex-col items-start md:justify-self-end md:items-end">
             <p className="font-semibold text-[15px] leading-none mb-3 md:text-right text-[#111618] dark:text-white">
               Follow Us
             </p>
@@ -86,7 +86,7 @@ export default function Footer() {
               <a
                 href="https://www.facebook.com/"
                 aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 flex items-center justify-center"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20"
               >
                 <FaFacebookF size={18} className="text-[#111618] dark:text-white" />
               </a>
@@ -95,7 +95,7 @@ export default function Footer() {
               <a
                 href="https://www.youtube.com/"
                 aria-label="YouTube"
-                className="w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 flex items-center justify-center"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20"
               >
                 <FaYoutube size={18} className="text-[#111618] dark:text-white" />
               </a>
@@ -103,10 +103,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="border-black/10 dark:border-white/15 my-6" />
+        <hr className="my-6 border-black dark:border-white/15" />
 
         {/* Copyright notice */}
-        <div className="text-center text-[#111618]/60 dark:text-white/60 text-[13px] leading-none">
+        <div className="text-center text-black dark:text-white/60 text-[13px] leading-none">
           © All rights reserved | 2025 Nexdecade Technology (Pvt.) Ltd
         </div>
       </div>
