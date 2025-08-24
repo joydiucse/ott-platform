@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import TopNavbar from "./NavBar/TopNavbar";
 import BottomNavBar from "./NavBar/BottomNavBar";
 import Footer from "./Footer";
+import ScrollButtons from "@/Components/ScrollButtons.jsx";
 
 function AppLayout() {
     return (
@@ -13,6 +14,7 @@ function AppLayout() {
             </main>
             <Footer />
             <BottomNavBar />
+            <ScrollButtons/>
         </div>
     );
 }
